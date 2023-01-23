@@ -75,10 +75,10 @@ bot_name = Config.BOT_NAME
 SUDO_USERS = Config.SUDO_USERS
 
 RUN_STRINGS = (
-    " Cavid Huseyinov"
-    "Polad Həşimov"
-    "Mubariz İbrahimov"
-    "Muxtar Qasımlı"
+    " Cavid_Huseyinov"
+    "Polad_Həşimov"
+    "Mubariz_İbrahimov"
+    "Muxtar_Qasımlı"
 )
 
 ALIVE = (
