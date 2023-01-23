@@ -622,12 +622,13 @@ async def handler(event):
      await event.edit(f"**🤩 Siz artıq ƏMİRLƏR bölümündesiz\n\n🫡 Hansı əmiri isdəsəniz aşağıda Buttonla vuraraq baxa bilersiz\n\n🩶 XOŞ İSDİFADELER @OldMultiBot**", buttons=(
                     # [Button.url('➕ Qrupa Əlavə Et ➕','http://t.me/OldMultiBot?startgroup=a')],
         # [Button.url('🎉 Sahib', 'https://t.me/Nehmedov')],
-                Button.inline(f"🧑‍💻 ADMİN ƏMİRLƏRİ", data="admin")],
+                #Button.inline(f"🧑‍💻 ADMİN ƏMİRLƏRİ", data="admin")],
                    #   Button.inline(f"🧑‍💻 ADMİN ƏMİRLƏRİ", data="admin")],
                [Button.inline(f"📮 TAG ƏMİRLƏRİ", data="thelp"),
                 Button.inline(f"📥 YÜKLƏMƏ", data="yhelp")],
                [Button.inline(f"🕹 GAME", data="dhelp"),
                       Button.inline(f"➕️ ƏLAVƏLƏR", data="elave")],
+               [Button.inline(f"🧑‍💻 ADMİN ƏMİRLƏRİ", data="admin"),
 	       [Button.inline(f"🔙 Geri", data="start")]
                     ),
                     link_preview=False)
