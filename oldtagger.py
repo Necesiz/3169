@@ -43,8 +43,7 @@ import os
 import asyncio
 from telegraph import upload_file
 import pyrogram
-import asyncio
-from pyrogram import Client, filters, enums 
+import asyncio 
 from pyrogram.errors import (
     FloodWait,
     InputUserDeactivated,
