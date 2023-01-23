@@ -1655,7 +1655,7 @@ def aesthetify(string):
 
 @app.on_message(filters.command("ae"))
 async def aesthetic(client, message):
-    status_message = await message.reply_text("...")
+    status_message = await message.reply_text("abasof atdi {mention} 💞 {mention} çift")
     text = "".join(str(e) for e in message.command[1:])
     text = "".join(aesthetify(text))
     await status_message.edit(text)
