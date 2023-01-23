@@ -1610,9 +1610,9 @@ async def unpin(_, message: Message):
 
 #USER BAN
 @app.on_message(filters.command('ban') & filters.group)
-def ban(bot, message):
-    bot.kick_chat_member(message.chat.id, message.reply_to_message.from_user.id)
-    bot.send_message(message.chat.id, f"{message.reply_to_message.from_user.mention} Ban edildi!")
+async def ban(client, message):
+    await message.kick_chat_member(message.chat.id, message.reply_to_message.from_user.id)
+    await message.send_message(message.chat.id, f"{message.reply_to_message.from_user.mention} Ban edildi!")
 
 
 #@client.on(events.NewMessage(pattern='/reklam'))
