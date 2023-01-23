@@ -45,7 +45,6 @@ from telegraph import upload_file
 import pyrogram
 import asyncio
 from pyrogram import Client, filters, enums 
-from helper.admin_check import admin_check
 from pyrogram.errors import (
     FloodWait,
     InputUserDeactivated,
@@ -1610,7 +1609,7 @@ async def unpin(_, message: Message):
     await message.reply_to_message.unpin()
 
 
-@app.on_message(filters.command("purge") & (filters.group | filters.channel))                   
+@app.on_message(filters.command("purge"))                   
 async def purge(client, message):
     if message.chat.type not in ((enums.ChatType.SUPERGROUP, enums.ChatType.CHANNEL)):
         return
