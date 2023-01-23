@@ -74,6 +74,13 @@ bot_name = Config.BOT_NAME
 
 SUDO_USERS = Config.SUDO_USERS
 
+RUN_STRINGS = (
+    " Cavid Huseyinov"
+    "Polad Həşimov"
+    "Mubariz İbrahimov"
+    "Muxtar Qasımlı"
+)
+
 ALIVE = (
     "Sahibim OLD MULTI BOT : ONLINE\n\nVERSIYA ⚡️"
     f"\nv{__version__}"
@@ -1624,12 +1631,19 @@ async def unpin(_, message: Message):
 
 
 
-
+@app.on_message(filters.command("sehid"))
+async def runs(_, message):
+    """ /runs strings """
+    effective_string = random.choice(RUN_STRINGS)
+    if message.reply_to_message:
+        await message.reply_to_message.reply_text(effective_string)
+    else:
+        await message.reply_text(effective_string)
 	
 
 
 
-#@client.on(events.NewMessage(pattern='/reklam'))
+#@(events.NewMessage(pattern='/reklam'))
 #async def handler(event):	
  #    await event.reply('🤖 [USTA Tag Bot](http://t.me/UstaTagbot)-unda Reklam Almaq Üzçün [ɴᴀᴋʜɪᴅ ᴜsᴛᴀ ¦ 🇧🇻🦅](https://t.me/UstaNakhid)-ilə Әlaqә Saxlayın.')
  
