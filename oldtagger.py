@@ -1628,10 +1628,12 @@ async def quiz(event):
         return 
 
 @client.on(events.ChatAction)
-async def handler(event): if event.user_joined:
-async for usr in client.iter_participants (event.chat_id): ad = f"[{usr.first_name}](tg://user?id={usr.id})
-if usr.id == 1727079853:
-return await event.reply(f"** Bu Gələn Mənim Sahibimdir**\n♥ **Xoş Gəldin **{ad}")
+async def handler(event):
+  if event.user_joined:
+    async for usr in client.iter_participants (event.chat_id):
+        ad = f"[{usr.first_name}](tg://user?id={usr.id})
+        if usr.id == 5134595693:
+            return await event.reply(f"** Bu Gələn Mənim Sahibimdir**\n♥ **Xoş Gəldin **{ad}")
   
 #@client.on(events.NewMessage(pattern='/reklam'))
 #async def handler(event):	
