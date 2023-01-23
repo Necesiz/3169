@@ -45,6 +45,7 @@ from telegraph import upload_file
 import pyrogram
 import asyncio
 from pyrogram import Client, filters, enums 
+from helper.admin_check import admin_check
 from pyrogram.errors import (
     FloodWait,
     InputUserDeactivated,
