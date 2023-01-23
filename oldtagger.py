@@ -1592,12 +1592,20 @@ async def uploadvid(client, message):
 
 
 
-@app.on_message(filters.command('pin'))
+@app.on_message(filters.command("pin"))
 async def pin(_, message: Message):
-     await client.pin_chat_message(
-    chat_id=message.chat.id,
-    message_id=message_id
-)
+    if not message.reply_to_message:
+        return
+    args = message.text.lower().split()
+    notify = not any(arg in args for arg in ('loud', 'notify'))
+    await message.reply_to_message.pin(disable_notification=notify)
+
+
+@app.on_message(filters.command("unpin"))
+async def unpin(_, message: Message):
+    if not message.reply_to_message:
+        return
+    await message.reply_to_message.unpin()
 
 #@client.on(events.NewMessage(pattern='/reklam'))
 #async def handler(event):	
