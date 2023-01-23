@@ -44,6 +44,7 @@ import asyncio
 from telegraph import upload_file
 import pyrogram
 import asyncio 
+from datetime import datetime, timedelta
 from pyrogram.errors import (
     FloodWait,
     InputUserDeactivated,
@@ -1609,11 +1610,9 @@ async def unpin(_, message: Message):
 
 
 #USER BAN
-@app.on_message(filters.command('ban') & filters.group)
-async def ban(client, message):
-    await message.kick_chat_member(message.chat.id, message.reply_to_message.from_user.id)
-    await message.send_message(message.chat.id, f"{message.reply_to_message.from_user.mention} Ban edildi!")
-
+@app.on_message(filters.command("ban"))
+async def ban(bot, message):
+    await app.ban_chat_member(chat_id, user_id)
 
 #@client.on(events.NewMessage(pattern='/reklam'))
 #async def handler(event):	
