@@ -577,7 +577,7 @@ async def start(event):
   if event.is_private:
     async for usr in client.iter_participants(event.chat_id):
      ad = f"[{usr.first_name}](tg://user?id={usr.id}) "
-     await event.reply(f"**👋 Salam əzizim Mən OLD MULTİ BOT bir cox funksyaya malik OLD MULTİ botam\n\n🤔 Botun isdifade qaydasın bilmirsen indi ise '🎛 ƏMİRLƏR' bölməsinə daxil olun\n\n✉️ Botu başladıqına dayir Sahibime mesaj yolladım**", buttons=(
+     await event.reply(f"**👋 Salam {ad} Mən OLD MULTİ BOT bir cox funksiyaya malik OLD MULTİ botam\n\n🤔 Botun isdifade qaydasın bilmirsen indi ise '🎛 ƏMİRLƏR' bölməsinə daxil olun\n\n✉️ Botu başlatdığına dayir Sahibime mesaj yolladım**", buttons=(
                      [Button.inline("🎛 ƏMİRLƏR", data="emir")],
        # [Button.url('🎉 Sahib', 'https://t.me/Nehmedov')],
               # [Button.url('Qurup🛠', 'https://t.me/Bizim_Paytaxt'),
@@ -602,7 +602,7 @@ async def start(event):
 async def handler(event):
     async for usr in client.iter_participants(event.chat_id):
      ad = f"[{usr.first_name}](tg://user?id={usr.id}) "
-     await event.edit(f"**👋 Salam əzizim Mən OLD MULTİ BOT bir cox funksyaya malik OLD MULTİ botam\n\n🤔 Botun isdifade qaydasın bilmirsen indi ise '🎛 ƏMİRLƏR' bölməsinə daxil olun\n\n✉️ Botu başladıqına dayir Sahibime mesaj yolladım**", buttons=(
+     await event.edit(f"**👋 Salam {ad} Mən OLD MULTİ BOT bir cox funksiyaya malik OLD MULTİ botam\n\n🤔 Botun isdifade qaydasın bilmirsen indi ise '🎛 ƏMİRLƏR' bölməsinə daxil olun\n\n✉️ Botu başlatdığına dayir Sahibime mesaj yolladım**", buttons=(
                      [Button.inline(f"🎛 ƏMİRLƏR", data="emir")],
         # [Button.url('🎉 Sahib', 'https://t.me/Nehmedov')],
                #[Button.url('Qurup🛠', 'https://t.me/Bizim_Paytaxt'),
