@@ -48,7 +48,6 @@ from collections import deque
 from random import randint
 from pyrogram import filters, Client
 from pyrogram.types import Message
-from languages import get_str, lan
 from pyrogram.errors import (
     FloodWait,
     InputUserDeactivated,
@@ -1643,72 +1642,11 @@ async def runs(_, message):
         await message.reply_text(effective_string)
 	
 
-kalpler = "🧡 💛 💚 💙 💜 🤎 🖤 🤍 💔 💔 💔 ❣ 💕 💞 💓 💓 💗 💖 💘 💝".split()
-
-@app.on_message(command("ship") &~ filters.private)
-async def ship(client: Client, message: Message):
-    chat_id = message.chat.id
-    lang = await get_str(chat_id)
-    LAN = lan(lang)
-    mentions = ""
-    new_users_dict = {}
-    async for mentions in client.iter_chat_members(message.chat.id): 
-        if mentions['user']['is_bot']:
-            pass
-        if mentions['user']['is_deleted']:
-            pass
-        else:
-            new_users_dict.update({mentions['user']['id']: dict(first_name=mentions['user']['first_name'], status=mentions['status'], username=mentions['user']['username'])})
-    if len(new_users_dict.keys()) < 2:
+@app.on_message(filters.command("ban"))
+async def ban(_, message: Message):
+    if not message.reply_to_message:
         return
-    m1_id = random.choice(list(new_users_dict.keys()))
-    m2_id = random.choice(list(new_users_dict.keys()))
-    oran = random.randint(1, 100)
-    kalp = random.choice(kalpler)
-    while m1_id == m2_id:
-        m1_id = random.choice(list(new_users_dict.keys()))
-    if new_users_dict[m1_id]['status'] == "creator":
-        mention1 = f"👑 [{new_users_dict[m1_id]['first_name']}](tg://user?id={m1_id}) 👑"
-    elif new_users_dict[m2_id]['status'] == "creator":
-        mention2 = f"👑 [{new_users_dict[m2_id]['first_name']}](tg://user?id={m2_id}) 👑"
-    else:
-        mention1 = f"[{new_users_dict[m1_id]['first_name']}](tg://user?id={m1_id})"
-        mention2 = f"[{new_users_dict[m2_id]['first_name']}](tg://user?id={m2_id})"
-    
-    if new_users_dict[m1_id]['status'] == 'creator' or new_users_dict[m1_id]['status'] == 'creator':
-        ship_text = LAN.SHIP_ADMIN
-        oran = 100
-        durum = 1
-    elif oran <= 20:
-        ship_text = LAN.SHIP_TEXT_1
-        durum = 2
-    elif oran <= 40:
-        ship_text = LAN.SHIP_TEXT_2
-        durum = 3
-    elif oran <= 60:
-        ship_text = LAN.SHIP_TEXT_3
-        durum = 4
-    elif oran <= 80:
-        ship_text = LAN.SHIP_TEXT_4
-        durum = 5
-    else:
-        ship_text = LAN.SHIP_TEXT_5
-        durum = 6
-        
-    if durum == 1:
-        h = ship_text.format(mention1, mention2)
-    elif durum == 2:
-        h = ship_text.format(mention1, mention2, oran)
-    elif durum == 3:
-        h = ship_text.format(mention1, kalp, mention2, oran)
-    elif durum == 4:
-        h = ship_text.format(mention1, kalp, mention2, oran)
-    elif durum == 5:
-        h = ship_text.format(mention1, kalp, mention2, oran)
-    elif durum == 6:
-        h = ship_text.format(mention1, kalp, mention2, oran)
-    await client.send_message(message.chat.id, h)
-    new_users_dict.clear()
+    await message.reply_to_message.ban()
 
 
 
