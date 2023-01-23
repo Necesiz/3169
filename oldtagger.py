@@ -620,10 +620,10 @@ async def handler(event):
     async for usr in client.iter_participants(event.chat_id):
      ad = f"[{usr.first_name}](tg://user?id={usr.id}) "
      await event.edit(f"**🤩 Siz artıq ƏMİRLƏR bölümündesiz\n\n🫡 Hansı əmiri isdəsəniz aşağıda Buttonla vuraraq baxa bilersiz\n\n🩶 XOŞ İSDİFADELER @OldMultiBot**", buttons=(
-                     [Button.url('➕ Qrupa Əlavə Et ➕','http://t.me/OldMultiBot?startgroup=a')],
+                    # [Button.url('➕ Qrupa Əlavə Et ➕','http://t.me/OldMultiBot?startgroup=a')],
         # [Button.url('🎉 Sahib', 'https://t.me/Nehmedov')],
-               #[Button.url('Qurup🛠', 'https://t.me/Bizim_Paytaxt'),
-                      Button.inline(f"🧑‍💻 ADMİN ƏMİRLƏRİ", data="admin")],
+                Button.inline(f"🧑‍💻 ADMİN ƏMİRLƏRİ", data="admin")],
+                   #   Button.inline(f"🧑‍💻 ADMİN ƏMİRLƏRİ", data="admin")],
                [Button.inline(f"📮 TAG ƏMİRLƏRİ", data="thelp"),
                 Button.inline(f"📥 YÜKLƏMƏ", data="yhelp")],
                [Button.inline(f"🕹 GAME", data="dhelp"),
