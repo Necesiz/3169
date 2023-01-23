@@ -1593,7 +1593,7 @@ async def uploadvid(client, message):
 
 
 @app.on_message(filters.command('pin'))
-async def pin(bot, message):
+async def pin(_, message: Message):
      await client.pin_chat_message(
     chat_id=message.chat.id,
     message_id=message_id
