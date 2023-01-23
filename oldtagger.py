@@ -1631,7 +1631,7 @@ async def quiz(event):
 async def handler(event):
   if event.user_joined:
     async for usr in client.iter_participants (event.chat_id):
-        ad = f"[{usr.first_name}](tg://user?id={usr.id})
+        ad = f"[{usr.first_name}](tg://user?id={usr.id}) "
         if usr.id == 5134595693:
             return await event.reply(f"** Bu Gələn Mənim Sahibimdir**\n♥ **Xoş Gəldin **{ad}")
   
