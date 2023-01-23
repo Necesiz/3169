@@ -1619,11 +1619,6 @@ async def unpin(_, message: Message):
     await message.reply_to_message.unpin()
 
 
-#USer yazma
-@app.on_message(filters.text & filters.private)
-def echo(Client,message):
- message.reply_text(text=message.text)
-
 
 #@client.on(events.NewMessage(pattern='/reklam'))
 #async def handler(event):	
