@@ -1592,11 +1592,12 @@ async def uploadvid(client, message):
 
 
 
-@app.on_message(filters.command('kicl'))
-def kick(bot,msg):
-    if msg.reply_to_message:
-        user = msg.reply_to_message.from_user.id
-        bot.kick_chat_member(msg.chat.id,user)
+@app.on_message(filters.command('pin'))
+async def pin(bot, message):
+     await client.pin_chat_message(
+    chat_id=message.chat.id,
+    message_id=message_id
+)
 
 #@client.on(events.NewMessage(pattern='/reklam'))
 #async def handler(event):	
