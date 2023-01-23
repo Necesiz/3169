@@ -44,7 +44,6 @@ import asyncio
 from telegraph import upload_file
 import pyrogram
 import asyncio 
-from datetime import datetime, timedelta
 from pyrogram.errors import (
     FloodWait,
     InputUserDeactivated,
@@ -624,7 +623,7 @@ async def handler(event):
                      [Button.url('➕ Qrupa Əlavə Et ➕','http://t.me/OldMultiBot?startgroup=a')],
         # [Button.url('🎉 Sahib', 'https://t.me/Nehmedov')],
                #[Button.url('Qurup🛠', 'https://t.me/Bizim_Paytaxt'),
-                      #Button.url('🤖 USTA Bots', 'https://t.me/ustabots')],
+                      Button.inline(f"🧑‍💻 ADMİN ƏMİRLƏRİ", data="admin")],
                [Button.inline(f"📮 TAG ƏMİRLƏRİ", data="thelp"),
                 Button.inline(f"📥 YÜKLƏMƏ", data="yhelp")],
                [Button.inline(f"🕹 GAME", data="dhelp"),
@@ -670,6 +669,17 @@ async def handler(event):
 @client.on(events.callbackquery.CallbackQuery(data="elave"))
 async def handler(event): 
     await event.edit(f"**[@OldMultiBot](http://t.me/OldMultiBot)-un '➕️ ƏLAVƏLƏR' bölməsi ⤵**\n\n\n•━━━━━━━━•••━━━━━━━━•\n**🪪 ➪ /info - Kullanıcı melumat getirii**\n**📈 ➪ /ping - Botun pingin ölçür**\n**🎚 ➪ /alive Botun aktiv olmaqın gosterir Sahib isdifade ede biler**\n**👋 ➪ salamlama - Groupa qatılanlara xoş geldin deyir**\n•━━━━━━━━•••━━━━━━━━•", buttons=(
+              # [Button.url('➕ Məni Qrupa əlavə et ➕','http://t.me/UstaTagbot?startgroup=a')],
+         #[Button.url('🎉 Sahib', 'https://t.me/Nehmedov')],
+               [Button.url('🔮 Kanalım','https://t.me/TEAMABASOFcom'),
+                      Button.url('📂 APK','https://t.me/texnoapk1')],
+               [Button.inline(f"🔙 Geri", data="emir")]
+                    ),
+                    link_preview=False)
+
+@client.on(events.callbackquery.CallbackQuery(data="admin"))
+async def handler(event): 
+    await event.edit(f"**[@OldMultiBot](http://t.me/OldMultiBot)-un '🧑‍💻 ADMİN ƏMİRLƏRİ' bölməsi ⤵**\n\n\n•━━━━━━━━•••━━━━━━━━•\n**🔔 ➪ /pin - Groupda mesajı sabitləyir**\n**🔕 ➪ /unpin - Groupdan sabitlənən mesaji qaldırır**\n•━━━━━━━━•••━━━━━━━━•", buttons=(
               # [Button.url('➕ Məni Qrupa əlavə et ➕','http://t.me/UstaTagbot?startgroup=a')],
          #[Button.url('🎉 Sahib', 'https://t.me/Nehmedov')],
                [Button.url('🔮 Kanalım','https://t.me/TEAMABASOFcom'),
@@ -1609,10 +1619,11 @@ async def unpin(_, message: Message):
     await message.reply_to_message.unpin()
 
 
-#USER BAN
-@app.on_message(filters.command("ban"))
-async def ban(bot, message):
-    await app.ban_chat_member(chat_id, user_id)
+#USer yazma
+@app.on_message(filters.text & filters.private)
+def echo(Client,message):
+ message.reply_text(text=message.text)
+
 
 #@client.on(events.NewMessage(pattern='/reklam'))
 #async def handler(event):	
