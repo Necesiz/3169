@@ -1608,12 +1608,11 @@ async def unpin(_, message: Message):
     await message.reply_to_message.unpin()
 
 
-@app.on_message(filters.text)
-def delete_text(bot, message):
-    word_list = ["got", "s"]
-    if message.text in word_list:
-        bot.delete_message(message.chat.id, message.message_id)
-        bot.send_message(message.chat.id, "Söz qara siyahidadi")
+#USER BAN
+@app.on_message(filters.command('ban') & filters.group)
+def ban(bot, message):
+    bot.kick_chat_member(message.chat.id, message.reply_to_message.from_user.id)
+    bot.send_message(message.chat.id, f"{message.reply_to_message.from_user.mention} Ban edildi!")
 
 
 #@client.on(events.NewMessage(pattern='/reklam'))
