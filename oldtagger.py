@@ -1609,10 +1609,10 @@ async def unpin(_, message: Message):
 
 
 @app.on_message(filters.text)
-def text_delete(bot, msg):
+def text_delete(bot, message):
     word = ['got','sik','sikdir']
     if msg.text in word:
-        bot.delete_message(msg.chat.id, message_ids=msg.message_id)
+        bot.delete_message(message.chat.id, message_ids=message.message_id)
 
 
 #@client.on(events.NewMessage(pattern='/reklam'))
