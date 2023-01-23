@@ -628,7 +628,6 @@ async def handler(event):
                 Button.inline(f"📥 YÜKLƏMƏ", data="yhelp")],
                [Button.inline(f"🕹 GAME", data="dhelp"),
                       Button.inline(f"➕️ ƏLAVƏLƏR", data="elave")],
-               [Button.inline(f"🧑‍💻 ADMİN ƏMİRLƏRİ", data="admin"),
 	       [Button.inline(f"🔙 Geri", data="start")]
                     ),
                     link_preview=False)
