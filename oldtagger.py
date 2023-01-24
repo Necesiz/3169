@@ -48,6 +48,7 @@ from collections import deque
 from random import randint
 from pyrogram import filters, Client
 from pyrogram.types import Message
+from datetime import datetime, timedelta
 from pyrogram.errors import (
     FloodWait,
     InputUserDeactivated,
@@ -1643,6 +1644,9 @@ async def runs(_, message):
 	
 
 
+@app.on_message(filters.command("ban") & filters.group)
+async def ban_chat_member(app, message):
+     await app.ban_chat_member(chat_id, user_id, datetime.now() + timedelta(days=1))
 
 
 
