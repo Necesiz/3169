@@ -79,7 +79,7 @@ bot_name = Config.BOT_NAME
 
 SUDO_USERS = Config.SUDO_USERS
 
-OWNER_ID = Config.OWENER_ID
+OWNER_ID = Config.OWNER_ID
  
 RUN_STRINGS = (
     "🥀Cavid Huseyinov🥀",
