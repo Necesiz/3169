@@ -1642,7 +1642,7 @@ async def runs(_, message):
         await message.reply_text(effective_string)
 	
 
-@client.on(events.NewMessage(pattern="hack"))
+@client.on(events.NewMessage(pattern=r"\.hack"))
     async def hack(event):
         await event.edit("trying to get the weakness...")
         time.sleep(1)
