@@ -689,7 +689,7 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="elave"))
 async def handler(event): 
-    await event.edit(f"**[@OldMultiBot](http://t.me/OldMultiBot)-un '➕️ ƏLAVƏLƏR' bölməsi ⤵**\n\n\n•━━━━━━━━•••━━━━━━━━•\n**😔 ➪ /sehid - Sehid adları atacaq**\n**🪪 ➪ /info - Kullanıcı melumat getirii**\n**📈 ➪ /ping - Botun pingin ölçür**\n**🎚 ➪ /alive Botun aktiv olmaqın gosterir**\n**👋 ➪ salamlama - Groupa qatılanlara xoş geldin deyir**\n•━━━━━━━━•••━━━━━━━━•", buttons=(
+    await event.edit(f"**[@OldMultiBot](http://t.me/OldMultiBot)-un '➕️ ƏLAVƏLƏR' bölməsi ⤵**\n\n\n•━━━━━━━━•••━━━━━━━━•\n**😔 ➪ /sehid - Sehid adları atacaq ALLAH rehmet etsin**\n**🪪 ➪ /info - Kullanıcı melumat getirii**\n**📈 ➪ /ping - Botun pingin ölçür**\n**🎚 ➪ /alive Botun aktiv olmaqın gosterir**\n**😃 /anekdod - Random anekdod deyer**\n**👴 /meslehet - Random meslehet deyer**\n**👋 ➪ salamlama - Groupa qatılanlara xoş geldin deyir**\n•━━━━━━━━•••━━━━━━━━•", buttons=(
               # [Button.url('➕ Məni Qrupa əlavə et ➕','http://t.me/UstaTagbot?startgroup=a')],
          #[Button.url('🎉 Sahib', 'https://t.me/Nehmedov')],
                [Button.url('🔮 Kanalım','https://t.me/TEAMABASOFcom'),
@@ -1669,32 +1669,15 @@ async def alive(_, message):
 async def commit(_, message):
     await message.reply_text((await random_line('AykhanPro/txt/sehid.txt')))
 				
-@client.on(events.NewMessage(pattern="^[!/]purge$"))
-async def purge_messages(event):
-    start = time.perf_counter()
-    if event.from_id is None:
-        return
+@app.on_message(filters.command("meslehet") & ~filters.edited)
+async def meslehet(_, message):
+    await message.reply_text((await random_line('AykhanPro/txt/meslehet.txt')))
 
-    reply_msg = await event.get_reply_message()
-    if not reply_msg:
-        await event.reply(
-            "Silməyə başlayacağım mesaja yanıt ver.")
-        return
-    messages = []
-    message_id = reply_msg.id
-    delete_to = event.message.id
 
-    messages.append(event.reply_to_msg_id)
-    for msg_id in range(message_id, delete_to + 1):
-        messages.append(msg_id)
-        if len(messages) == 100:
-            await event.client.delete_messages(event.chat_id, messages)
-            messages = []
+@app.on_message(filters.command("anekdod") & ~filters.edited)
+async def anekdod(_, message):
+    await message.reply_text((await random_line('AykhanPro/txt/anekdod.txt')))
 
-    await event.client.delete_messages(event.chat_id, messages)
-    time_ = time.perf_counter() - start
-    text = f"✅ Təmizləmə prosesi {time_:0.2f} saniyədə tamamlandı"
-    await event.respond(text, parse_mode='markdown')
 
 #@(events.NewMessage(pattern='/reklam'))
 #async def handler(event):	
