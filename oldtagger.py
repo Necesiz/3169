@@ -89,14 +89,6 @@ OWNER_ID = Config.OWNER_ID
 
 SUDO = Config.SUDO
 
-RUN_STRINGS = (
-    "🥀Cavid Huseyinov🥀",
-    "🥀Polad Həşimov🥀",
-    "🥀Mubariz İbrahimov🥀",
-    "🥀Muxtar Qasımlı🥀",
-    "🥀Xudayar Yusifzade🥀",
-)
-
 ALIVE = (
     "Sahibim OLD MULTI BOT : ONLINE\n\nVERSIYA ⚡️"
     f"\nv{__version__}"
@@ -1641,17 +1633,6 @@ async def unpin(_, message: Message):
 
 
 
-@app.on_message(filters.command("sehid"))
-async def runs(_, message):
-    """ /runs strings """
-    effective_string = random.choice(RUN_STRINGS)
-    if message.reply_to_message:
-        await message.reply_to_message.reply_text(effective_string)
-    else:
-        await message.reply_text(effective_string)
-	
-
-
 ABISHNOIX = "https://telegra.ph/file/44d9457217353f7f955b8.jpg"
 
 
@@ -1682,11 +1663,36 @@ async def alive(_, message):
     )
 
 
-@app.on_message(filters.command("sehidd") & ~filters.edited)
+@app.on_message(filters.command("sehid") & ~filters.edited)
 async def commit(_, message):
     await message.reply_text((await random_line('AykhanPro/txt/sehid.txt')))
-				    
+				
+@client.on(events.NewMessage(pattern="^[!/]purge$"))
+async def purge_messages(event):
+    start = time.perf_counter()
+    if event.from_id is None:
+        return
 
+    reply_msg = await event.get_reply_message()
+    if not reply_msg:
+        await event.reply(
+            "Silməyə başlayacağım mesaja yanıt ver.")
+        return
+    messages = []
+    message_id = reply_msg.id
+    delete_to = event.message.id
+
+    messages.append(event.reply_to_msg_id)
+    for msg_id in range(message_id, delete_to + 1):
+        messages.append(msg_id)
+        if len(messages) == 100:
+            await event.client.delete_messages(event.chat_id, messages)
+            messages = []
+
+    await event.client.delete_messages(event.chat_id, messages)
+    time_ = time.perf_counter() - start
+    text = f"✅ Təmizləmə prosesi {time_:0.2f} saniyədə tamamlandı"
+    await event.respond(text, parse_mode='markdown')
 
 #@(events.NewMessage(pattern='/reklam'))
 #async def handler(event):	
