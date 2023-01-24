@@ -10,6 +10,7 @@ from random import randint
 import configparser
 from asyncio import sleep
 from telethon import events
+from telethon import __version__ as s
 from Config import Config 
 # Pyrogram----------------------------------------------------------------------------------------------------
 import datetime
@@ -48,7 +49,12 @@ from collections import deque
 from random import randint
 from pyrogram import filters, Client
 from pyrogram.types import Message
-from datetime import datetime, timedelta
+from platform import python_version as y
+
+from pyrogram import __version__ as z
+from pyrogram import filters
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from telegram import __version__ as o
 from pyrogram.errors import (
     FloodWait,
     InputUserDeactivated,
@@ -1549,12 +1555,6 @@ async def handler(event): # Welcome every new user
        await event.reply('Salam xos geldiniz groupa!')
 
 
-#pyrogram telegrap
-@app.on_message(filters.command("alive") & filters.user(Config.OWNER_ID))
-async def live(client: Client, message: Message):
-    livemsg = await message.reply_text(ALIVE)
-
-
 
 @app.on_message(filters.command("ping"))
 async def ping(_, message):
@@ -1644,10 +1644,35 @@ async def runs(_, message):
 	
 
 
-@app.on_message(filters.command("ban") & filters.group)
-async def ban_chat_member(app, message):
-     await app.ban_chat_member(chat_id, user_id, datetime.now() + timedelta(days=1))
+ABISHNOIX = "https://telegra.ph/file/d67cd562f2905d02c20ba.jpg"
 
+
+@app.on_message(filters.command(["alive"]))
+async def alive(_, message):
+    await message.reply_photo(
+        photo=ABISHNOIX,
+        caption=f"""✨ **ʜᴇʏ {message.from_user.mention},**
+
+**ʀᴇᴘᴏ ᴏᴡɴᴇʀ  : [𝐀ʙɪꜱʜɴᴏɪ](https://t.me/Abishnoi1M)**
+**ᴘʏᴛʜᴏɴ ᴠᴇʀꜱɪᴏɴ :** `{y()}`
+**ʟɪʙʀᴀʀʏ ᴠᴇʀꜱɪᴏɴ :** `{o}`
+**ᴛᴇʟᴇᴛʜᴏɴ ᴠᴇʀꜱɪᴏɴ :** `{s}`
+**ᴘʏʀᴏɢʀᴀᴍ ᴠᴇʀꜱɪᴏɴ :** `{z}`
+**ʙᴏᴛ ᴠᴇʀꜱɪᴏɴ :** `2.69`
+""",
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(
+                        "•ᴍᴜꜱɪᴄ•", url="https://github.com/Abishnoi69/AsuXMusic"
+                    ),
+                    InlineKeyboardButton(
+                        "•ʀᴏʙᴏᴛ•", url="https://github.com/Abishnoi69/ExonRobot"
+                    ),
+                ]
+            ]
+        ),
+    )
 
 
 #@(events.NewMessage(pattern='/reklam'))
