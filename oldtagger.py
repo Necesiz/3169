@@ -1685,7 +1685,7 @@ async def sil(event):
     if not mesaj.sender_id in OWNER_ID:
         await event.delete()
         await event.delete()
-        silindi = await event.reply(🗑 ☆☆Uğurla silindi☆☆")
+        silindi = await event.reply("🗑 ☆☆Uğurla silindi☆☆")
         await asyncio.sleep(2)
         await silindi.delete()
 				    
