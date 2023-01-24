@@ -685,7 +685,7 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="elave"))
 async def handler(event): 
-    await event.edit(f"**[@OldMultiBot](http://t.me/OldMultiBot)-un '➕️ ƏLAVƏLƏR' bölməsi ⤵**\n\n\n•━━━━━━━━•••━━━━━━━━•\n**🪪 ➪ /info - Kullanıcı melumat getirii**\n**📈 ➪ /ping - Botun pingin ölçür**\n**🎚 ➪ /alive Botun aktiv olmaqın gosterir Sahib isdifade ede biler**\n**👋 ➪ salamlama - Groupa qatılanlara xoş geldin deyir**\n•━━━━━━━━•••━━━━━━━━•", buttons=(
+    await event.edit(f"**[@OldMultiBot](http://t.me/OldMultiBot)-un '➕️ ƏLAVƏLƏR' bölməsi ⤵**\n\n\n•━━━━━━━━•••━━━━━━━━•\n**😔 ➪ /sehid - Sehid adları atacaq**\n**🪪 ➪ /info - Kullanıcı melumat getirii**\n**📈 ➪ /ping - Botun pingin ölçür**\n**🎚 ➪ /alive Botun aktiv olmaqın gosterir**\n**👋 ➪ salamlama - Groupa qatılanlara xoş geldin deyir**\n•━━━━━━━━•••━━━━━━━━•", buttons=(
               # [Button.url('➕ Məni Qrupa əlavə et ➕','http://t.me/UstaTagbot?startgroup=a')],
          #[Button.url('🎉 Sahib', 'https://t.me/Nehmedov')],
                [Button.url('🔮 Kanalım','https://t.me/TEAMABASOFcom'),
