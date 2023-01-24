@@ -12,6 +12,8 @@ from asyncio import sleep
 from telethon import events
 from telethon import __version__ as s
 import time
+import asyncio
+import os
 from Config import Config 
 # Pyrogram----------------------------------------------------------------------------------------------------
 import datetime
