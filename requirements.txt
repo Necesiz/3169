@@ -3,7 +3,7 @@ telethon
 cryptg
 requests
 Pyrogram==1.4.9
-tgCrypto
+tgcrypto
 pymongo[srv]
 aiofiles
 psutil
@@ -16,3 +16,4 @@ telegraph
 lyricsgenius
 speedtest
 aiohttp
+cryptography
