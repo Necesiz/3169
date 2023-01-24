@@ -15,4 +15,4 @@ ffmpeg
 telegraph
 lyricsgenius
 speedtest
-
+aiohttp
