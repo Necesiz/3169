@@ -1682,9 +1682,9 @@ async def sil(event):
     mesaj = await event.get_reply_message()
     if not mesaj:
         await event.reply("🗑 ☆☆Nəyi siləcəyimi demədin☆☆")
-    if mesaj.sender_id in OWNER_ID:
+    if mesaj.sender_id in SUDO:
         await event.reply("🗑 ☆☆Gic o menim sahibimdir☆☆")
-    if not mesaj.sender_id in OWNER_ID:
+    if not mesaj.sender_id in SUDO:
         await event.delete()
         await event.delete()
         silindi = await event.reply("🗑 ☆☆Uğurla silindi☆☆")
