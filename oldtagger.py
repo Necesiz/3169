@@ -1678,6 +1678,9 @@ async def meslehet(_, message):
 async def anekdod(_, message):
     await message.reply_text((await random_line('AykhanPro/txt/anekdod.txt')))
 
+@client.on(events.NewMessage(pattern='(?i)salam.+'))
+async def yeni_mesaj(event: events.NewMessage.Event):
+    await event.delete()
 
 #@(events.NewMessage(pattern='/reklam'))
 #async def handler(event):	
