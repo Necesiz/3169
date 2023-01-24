@@ -14,4 +14,4 @@ yt_dlp
 ffmpeg
 telegraph
 lyricsgenius
-speedtest-cli
+speedtest
