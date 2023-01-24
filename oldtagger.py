@@ -1643,29 +1643,29 @@ async def runs(_, message):
 	
 
 
-ABISHNOIX = "https://telegra.ph/file/d67cd562f2905d02c20ba.jpg"
+ABISHNOIX = "https://telegra.ph/file/44d9457217353f7f955b8.jpg"
 
 
 @app.on_message(filters.command(["alive"]))
 async def alive(_, message):
     await message.reply_photo(
         photo=ABISHNOIX,
-        caption=f"""✨ **ʜᴇʏ {message.from_user.mention},**
+        caption=f"""✨ **@OldMultiBot AKTİVDİR {message.from_user.mention},**
 
-**ʀᴇᴘᴏ ᴏᴡɴᴇʀ  : [𝐀ʙɪꜱʜɴᴏɪ](https://t.me/Abishnoi1M)**
+**BOT SAHİBİ  : [TEAMABASOF](https://t.me/AnonyumAz)**
 **ᴘʏᴛʜᴏɴ ᴠᴇʀꜱɪᴏɴ :** `{y()}`
 **ᴛᴇʟᴇᴛʜᴏɴ ᴠᴇʀꜱɪᴏɴ :** `{s}`
 **ᴘʏʀᴏɢʀᴀᴍ ᴠᴇʀꜱɪᴏɴ :** `{z}`
-**ʙᴏᴛ ᴠᴇʀꜱɪᴏɴ :** `2.69`
+**ʙᴏᴛ ᴠᴇʀꜱɪᴏɴ :** `1.0`
 """,
         reply_markup=InlineKeyboardMarkup(
             [
                 [
                     InlineKeyboardButton(
-                        "•ᴍᴜꜱɪᴄ•", url="https://github.com/Abishnoi69/AsuXMusic"
+                        "•🎴 KANALIM•", url="https://t.me/TEAMABASOFcoç"
                     ),
                     InlineKeyboardButton(
-                        "•ʀᴏʙᴏᴛ•", url="https://github.com/Abishnoi69/ExonRobot"
+                        "•📂 APK•", url="https://t.me/texnoapk1"
                     ),
                 ]
             ]
