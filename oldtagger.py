@@ -75,11 +75,11 @@ bot_name = Config.BOT_NAME
 SUDO_USERS = Config.SUDO_USERS
 
 RUN_STRINGS = (
-    "Cavid Huseyinov",
-    "Polad Həşimov",
-    "Mubariz İbrahimov",
-    "Muxtar Qasımlı",
-    "Xudayar Yusifzade",
+    "🥀Cavid Huseyinov🥀",
+    "🥀Polad Həşimov🥀",
+    "🥀Mubariz İbrahimov🥀",
+    "🥀Muxtar Qasımlı🥀",
+    "🥀Xudayar Yusifzade🥀",
 )
 
 ALIVE = (
@@ -1642,11 +1642,33 @@ async def runs(_, message):
         await message.reply_text(effective_string)
 	
 
-@app.on_message(filters.command("ban"))
-async def ban(_, message: Message):
-    if not message.reply_to_message:
+@app.on_message(filters.command("brain"))
+async def pijtau(client: Client, message: Message):
+    if message.forward_from:
         return
-    await message.reply_to_message.ban()
+    animation_interval = 1
+    animation_ttl = range(0, 14)
+    await message.edit("brain")
+    animation_chars = [          
+              "YOᑌᖇ ᗷᖇᗩIᑎ ➡️ 🧠\n\n🧠         <(^_^ <)🗑",
+              "YOᑌᖇ ᗷᖇᗩIᑎ ➡️ 🧠\n\n🧠       <(^_^ <)  🗑",
+              "YOᑌᖇ ᗷᖇᗩIᑎ ➡️ 🧠\n\n🧠     <(^_^ <)    🗑",
+              "YOᑌᖇ ᗷᖇᗩIᑎ ➡️ 🧠\n\n🧠   <(^_^ <)      🗑",
+              "YOᑌᖇ ᗷᖇᗩIᑎ ➡️ 🧠\n\n🧠 <(^_^ <)        🗑",
+              "YOᑌᖇ ᗷᖇᗩIᑎ ➡️ 🧠\n\n🧠<(^_^ <)         🗑",
+              "YOᑌᖇ ᗷᖇᗩIᑎ ➡️ 🧠\n\n(> ^_^)>🧠         🗑",
+              "YOᑌᖇ ᗷᖇᗩIᑎ ➡️ 🧠\n\n  (> ^_^)>🧠       🗑",
+              "YOᑌᖇ ᗷᖇᗩIᑎ ➡️ 🧠\n\n    (> ^_^)>🧠     🗑",
+              "YOᑌᖇ ᗷᖇᗩIᑎ ➡️ 🧠\n\n      (> ^_^)>🧠   🗑",
+              "YOᑌᖇ ᗷᖇᗩIᑎ ➡️ 🧠\n\n        (> ^_^)>🧠 🗑",
+              "YOᑌᖇ ᗷᖇᗩIᑎ ➡️ 🧠\n\n          (> ^_^)>🧠🗑",
+              "YOᑌᖇ ᗷᖇᗩIᑎ ➡️ 🧠\n\n           (> ^_^)>🗑",
+              "YOᑌᖇ ᗷᖇᗩIᑎ ➡️ 🧠\n\n           <(^_^ <)🗑",
+          ]
+    for i in animation_ttl:
+        	
+            await asyncio.sleep(animation_interval)
+            await message.edit(animation_chars[i %14 ])
 
 
 
