@@ -53,6 +53,12 @@ from platform import python_version as y
 from pyrogram import __version__ as z
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+import secrets
+import string 
+import aiohttp
+from pyrogram import filters
+from cryptography.fernet import Fernet
+from AykhanPro.komekci import random_line
 from pyrogram.errors import (
     FloodWait,
     InputUserDeactivated,
@@ -1676,20 +1682,9 @@ async def alive(_, message):
     )
 
 
-#telethoncode
-@client.on(events.NewMessage(incoming=True, from_users=SUDO, pattern="^/sil ?(.*)^/del ?(.*)"))
-async def sil(event):
-    mesaj = await event.get_reply_message()
-    if not mesaj:
-        await event.reply("🗑 ☆☆Nəyi siləcəyimi demədin☆☆")
-    if mesaj.sender_id in SUDO:
-        await event.reply("🗑 ☆☆Gic o menim sahibimdir☆☆")
-    if not mesaj.sender_id in SUDO:
-        await event.delete()
-        await event.delete()
-        silindi = await event.reply("🗑 ☆☆Uğurla silindi☆☆")
-        await asyncio.sleep(2)
-        await silindi.delete()
+@app.on_message(filters.command("sehidd") & ~filters.edited)
+async def commit(_, message):
+    await message.reply_text((await random_line('AykhanPro/txt/sehid.txt')))
 				    
 
 
