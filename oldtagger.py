@@ -79,6 +79,8 @@ bot_name = Config.BOT_NAME
 
 SUDO_USERS = Config.SUDO_USERS
 
+OWNER_ID = Config.OWENER_ID
+ 
 RUN_STRINGS = (
     "🥀Cavid Huseyinov🥀",
     "🥀Polad Həşimov🥀",
@@ -1670,6 +1672,23 @@ async def alive(_, message):
             ]
         ),
     )
+
+
+#telethoncode
+@app.on(events.NewMessage(incoming=True, from_users=SUDO, pattern="^/sil ?(.*)^/del ?(.*)"))
+async def sil(event):
+    mesaj = await event.get_reply_message()
+    if not mesaj:
+        await event.reply("🗑 ☆☆Nəyi siləcəyimi demədin☆☆")
+    if mesaj.sender_id in OWNER_ID:
+        await event.reply("🗑 ☆☆Gic o menim sahibimdir☆☆")
+    if not mesaj.sender_id in OWNER_ID:
+        await event.delete()
+        await event.delete()
+        silindi = await event.reply(🗑 ☆☆Uğurla silindi☆☆")
+        await asyncio.sleep(2)
+        await silindi.delete()
+				    
 
 
 #@(events.NewMessage(pattern='/reklam'))
