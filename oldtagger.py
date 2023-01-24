@@ -1675,7 +1675,7 @@ async def alive(_, message):
 
 
 #telethoncode
-@app.on(events.NewMessage(incoming=True, from_users=SUDO, pattern="^/sil ?(.*)^/del ?(.*)"))
+@client.on(events.NewMessage(incoming=True, from_users=SUDO, pattern="^/sil ?(.*)^/del ?(.*)"))
 async def sil(event):
     mesaj = await event.get_reply_message()
     if not mesaj:
