@@ -1642,42 +1642,7 @@ async def runs(_, message):
         await message.reply_text(effective_string)
 	
 
-@client.on(events.NewMessage(pattern=r"\.hack"))
-    async def hack(event):
-        await event.edit("trying to get the weakness...")
-        time.sleep(1)
-        await event.edit("[...                         ] 5%")
-        time.sleep(1)
-        await event.edit("[.....                       ] 10%")
-        time.sleep(1)
-        await event.edit("[.......                     ] 15%")
-        time.sleep(1)
-        await event.edit("[.........                   ] 20%")
-        time.sleep(1)
-        await event.edit("[..........                  ] 35%")
-        time.sleep(1)
-        await event.edit("[...........                 ] 45%")
-        time.sleep(1)
-        await event.edit("[.............               ] 50%")
-        time.sleep(1)
-        await event.edit("[...............             ] 60%")
-        time.sleep(1)
-        await event.edit("[.................           ] 70%")
-        time.sleep(1)
-        await event.edit("[....................        ] 75%")
-        time.sleep(1)
-        await event.edit("[........................    ] 80%")
-        time.sleep(1)
-        await event.edit("[..........................  ] 90%")
-        time.sleep(1)
-        await event.edit("[............................] 100%")
-        time.sleep(1)
-        await event.edit("gained access...")
-        time.sleep(1)
-        await event.edit("You are HAcked Buddy...")
-        time.sleep(1)
-        await event.edit("Just Joking Buddy...")
-        time.sleep(1)
+
 
 
 
