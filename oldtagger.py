@@ -10,7 +10,7 @@ from random import randint
 import configparser
 from asyncio import sleep
 from telethon import events
-speedtest-cli
+import speedtest
 from Config import Config 
 # Pyrogram----------------------------------------------------------------------------------------------------
 import datetime
