@@ -679,7 +679,7 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="dhelp"))
 async def handler(event): 
-    await event.edit(f"**[@OldMultiBot](http://t.me/OldMultiBot)-un '🕹 GAME' bölməsi ⤵**\n\n\n•━━━━━━━━•••━━━━━━━━•\n**🎲 ➪ /zer - Zər atar**\n**🎯 ➪ /ox - Ox atar**\n**⚽️ ➪ /gol - Goal atar**\n**🎰 ➪ /spin - Spin cevir**\n**🏀 ➪ /basket - Basket atar**\n**🎳 ➪ /bowling - Bowling atar**\n•━━━━━━━━•••━━━━━━━━•", buttons=(
+    await event.edit(f"**[@OldMultiBot](http://t.me/OldMultiBot)-un '🕹 GAME' bölməsi ⤵**\n\n\n•━━━━━━━━•••━━━━━━━━•\n**☸️ /dc - Doğruluq Və Cəsarət oyna DİQQƏT suallar Türk dilindədi**\n**🎲 ➪ /zer - Zər atar**\n**🎯 ➪ /ox - Ox atar**\n**⚽️ ➪ /gol - Goal atar**\n**🎰 ➪ /spin - Spin cevir**\n**🏀 ➪ /basket - Basket atar**\n**🎳 ➪ /bowling - Bowling atar**\n•━━━━━━━━•••━━━━━━━━•", buttons=(
               # [Button.url('➕ Məni Qrupa əlavə et ➕','http://t.me/UstaTagbot?startgroup=a')],
          #[Button.url('🎉 Sahib', 'https://t.me/Nehmedov')],
                [Button.url('🔮 Kanalım','https://t.me/TEAMABASOFcom'),
@@ -1707,26 +1707,26 @@ async def _(client, callback_query):
 	if str(user.id) == str(user_id):
 		# Kullanıcının Doğruluk Sorusu İstemiş İse Bu Kısım Calışır
 		if c_q_d == "d_data":
-			await callback_query.answer(text="Doğruluk Sorusu İstediniz", show_alert=False) # İlk Ekranda Uyarı Olarak Gösterelim
+			await callback_query.answer(text="Doğruluq Sorusu İstədiniz", show_alert=False) # İlk Ekranda Uyarı Olarak Gösterelim
 			await client.delete_messages(
 				chat_id=callback_query.message.chat.id,
 				message_ids=callback_query.message.message_id) # Eski Mesajı Silelim
 
-			await callback_query.message.reply_text("**{user} Doğruluk Sorusu İstedi:** __{d_soru}__".format(user=user.mention, d_soru=d_soru)) # Sonra Kullanıcıyı Etiketleyerek Sorusunu Gönderelim
+			await callback_query.message.reply_text("**{user} Doğruluq Sorusu İstədi:** __{d_soru}__".format(user=user.mention, d_soru=d_soru)) # Sonra Kullanıcıyı Etiketleyerek Sorusunu Gönderelim
 			return
 
 		if c_q_d == "c_data":
-			await callback_query.answer(text="Cesaret Sorusu İstediniz", show_alert=False)
+			await callback_query.answer(text="Cəsarət Sorusu İstədiniz", show_alert=False)
 			await client.delete_messages(
 				chat_id=callback_query.message.chat.id,
 				message_ids=callback_query.message.message_id)
-			await callback_query.message.reply_text("**{user} Cesaret Sorusu İstedi:** __{c_soru}__".format(user=user.mention, c_soru=c_soru))
+			await callback_query.message.reply_text("**{user} Cəsarət Sorusu İstədi:** __{c_soru}__".format(user=user.mention, c_soru=c_soru))
 			return
 
 
 	# Buttonumuza Tıklayan Kisi Komut Calıştıran Kişi Değil İse Uyarı Gösterelim
 	else:
-		await callback_query.answer(text="Komutu Kullanan Kişi Sen Değilsin!!", show_alert=False)
+		await callback_query.answer(text="əmiri isdifade edən kişi Sən Deyilsən!!", show_alert=False)
 		return
 
 ############################
@@ -1737,10 +1737,10 @@ async def _(client, message):
   user = message.from_user
   
   if user.id not in OWNER_ID:
-    await message.reply_text("**[?]** **Sen Yetkili Birisi degilsin!!**")
+    await message.reply_text("**[?]** **Sən botda Sudo deyilsən!!**")
     return
   MOD="cekle"
-  await message.reply_text("**[?]** **Eklenmesini istedigin Cesaret Sorunu Giriniz!**")
+  await message.reply_text("**[?]** **Əlavə etmək isdədiyiniz cəsarət sualını yazın!**")
   
 @app.on_message(filters.command("dekle"))
 async def _(client, message):
@@ -1748,10 +1748,10 @@ async def _(client, message):
   user = message.from_user
   
   if user.id not in OWNER_ID:
-    await message.reply_text("**[?]** **Sen Yetkili Birisi degilsin!!**")
+    await message.reply_text("**[?]** **Sən botda Sudo deyilsən!!**")
     return
   MOD="cekle"
-  await message.reply_text("**[?]** **Eklenmesini istedigin Dogruluk Sorunu Giriniz!**")
+  await message.reply_text("**[?]** **Əlavə etmək isdədiyiniz cəsarət sualını yazın!**")
 
 @app.on_message(filters.private)
 async def _(client, message):
@@ -1765,12 +1765,12 @@ async def _(client, message):
     if MOD=="cekle":
       C_LİST.append(str(message.text))
       MOD=None
-      await message.reply_text("**[?]** __Metin Cesaret Sorusu Olarak Eklendi!__")
+      await message.reply_text("**[?]** __Mətin Cəsarət Sualı Olaraq Əlavə edildi!__")
       return
     if MOD=="dekle":
       C_LİST.append(str(message.text))
       MOD=None
-      await message.reply_text("**[?]** __Metin Dogruluk Sorusu Olarak Eklendi!__")
+      await message.reply_text("**[?]** __Mətin Doğruluq Sualı Olaraq Əlavə edildi!__")
       return
 
 #@(events.NewMessage(pattern='/reklam'))
