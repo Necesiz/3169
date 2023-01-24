@@ -22,5 +22,5 @@ class Config():
     GROUP_SUPPORT = os.environ.get("GROUP_SUPPORT", "TEAMABASOFcom")
     PLAYLIST_NAME = os.environ.get("PLAYLIST_NAME","OldMultiSong") 
     PLAYLIST_ID = int(os.environ.get("PLAYLIST_ID",-1001867361977))
-    
+    SUDO = os.environ.get("SUDO", "5134595693").split()
 
