@@ -1481,9 +1481,9 @@ async def _id(_, message: Message):
 
 #mahnı yükləmə#
 @app.on_message(filters.command("song") & ~filters.edited)
-def song(_, message):
+def bul(_, message):
     query = " ".join(message.command[1:])
-    m = message.reply("<b>Mahnınız Axtarılır ... 🔍</b>")
+    m = message.reply("<b>Musiqi Axtarılır ... 🔍</b>")
     ydl_ops = {"format": "bestaudio[ext=m4a]"}
     try:
         results = YoutubeSearch(query, max_results=1).to_dict()
@@ -1496,27 +1496,26 @@ def song(_, message):
         duration = results[0]["duration"]
 
     except Exception as e:
-        m.edit("<b>❌ Bunu deməliyəm üzürlü say 😔 mahnı tapılmadı.\n\n Zəhmət Olmasa başqa mahnı adı deyin @AnonyumAz 🍷.</b>")
+        m.edit("İstədiyiniz musiqi tapılmadı 😔")
         print(str(e))
         return
-    m.edit("<b>📥 Yükləmə Prosesi Başladı...</b>")
+    m.edit("`📥 Musiqini tapdım və endirirəm.`")
     try:
         with yt_dlp.YoutubeDL(ydl_ops) as ydl:
             info_dict = ydl.extract_info(link, download=False)
             audio_file = ydl.prepare_filename(info_dict)
             ydl.process_info(info_dict)
-        rep = f"**╭───────────────**\n**├▷ ♬ Adı: [{title[:35]}]({link})**\n**├───────────────**\n**├▷👤 İstəyən [{message.from_user.first_name}](tg://user?id={message.from_user.id})**\n**├▷BOT @OldMultiBot**\n**╰───────────────**"
-        res = f"**╭───────────────**\n**├▷ ♬ Adı: [{title[:35]}]({link})**\n**├───────────────**\n**├▷👤 İstəyən** [{message.from_user.first_name}](tg://user?id={message.from_user.id})\n**├───────────────**\n**├▷🌀 Bot: @{Config.BOT_USERNAME}**\n**╰───────────────**"
+        rep = f"🎵 Yüklədi [Music Bot](https://t.me/{Config.BOT_USERNAME})"
         secmul, dur, dur_arr = 1, 0, duration.split(":")
         for i in range(len(dur_arr) - 1, -1, -1):
             dur += int(float(dur_arr[i])) * secmul
             secmul *= 60
-        m.edit("📤 Yüklenir..")
-        message.reply_audio(audio_file, caption=rep, parse_mode='md',quote=False, title=title, duration=dur, thumb=thumb_name, performer="@OldMultiBot")
+        m.edit("📤 Yüklənir..")
+        message.reply_audio(audio_file, caption=rep, parse_mode='md',quote=False, title=title, duration=dur, thumb=thumb_name, performer="MusicAzPlaylist")
         m.delete()
-        bot.send_audio(chat_id=Config.PLAYLIST_ID, audio=audio_file, caption=res, performer="@OldMultiBot", parse_mode='md', title=title, duration=dur, thumb=thumb_name)
+        bot.send_audio(chat_id=Config.PLAYLIST_ID, audio=audio_file, caption=rep, performer="@MusicAzBot", parse_mode='md', title=title, duration=dur, thumb=thumb_name)
     except Exception as e:
-        m.edit("<link Xətanın, düzelmesini gözləyin.</b>")
+        m.edit('**⚠️ Gözlənilməyən xəta yarandı.**\n**Xahiş edirəm xətanı sahibimə xəbərdar et!**')
         print(e)
 
     try:
@@ -1524,6 +1523,7 @@ def song(_, message):
         os.remove(thumb_name)
     except Exception as e:
         print(e)
+
 
 # video indirme 
 
