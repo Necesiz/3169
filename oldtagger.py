@@ -1532,9 +1532,8 @@ def song(_, message):
 api = genius.Genius(GENIUS_API,verbose=False)
 
 
-@app.on_message(filters.command(['lyrics','lyric']))
-    & (filters.group | filters.private) 
-    & ~ filters.edited)
+@app.on_message(filters.command("lyrics","lyric"))
+    & ~filters.edited)
 async def lyrics(medusa:Medusa,msg: Message):
 
     if len(msg.command) == 1:
