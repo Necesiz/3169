@@ -63,6 +63,9 @@ from pyrogram import filters
 from cryptography.fernet import Fernet
 from AykhanPro.komekci import random_line
 from sorular import D_LİST, C_LİST
+from pyrogram import Client, idle, filters
+from io import BytesIO
+from aiohttp import ClientSession
 from pyrogram.errors import (
     FloodWait,
     InputUserDeactivated,
@@ -1824,6 +1827,30 @@ async def _(client, message):
       await message.reply_text("**[?]** __Mətin Doğruluq Sualı Olaraq Əlavə edildi!__")
       return
 
+
+aiohttpsession = ClientSession()
+
+
+async def get_http_status_code(url: str) -> int:
+    async with aiohttpsession.head(url) as resp:
+        return resp.status
+    
+
+async def make_carbon(code):
+    url = "https://carbonara.vercel.rphn/api/cook"
+    async with aiohttpsession.post(url, json={"code": code}) as resp:
+        image = BytesIO(await resp.read())
+    image.name = "carbon.png"
+    return image
+
+@app.on_message(filters.command("carbon"))
+async def carbon_func(bot: rphn, msg: Message):
+    m = await msg.reply_text("`Hazırlanır`")
+    carbon = await make_carbon(msg.reply_to_message.text)
+    await m.edit("`Göndərilir`")
+    await bot.send_photo(msg.chat.id, photo=carbon)
+    await m.delete()
+    carbon.close()
 
 
 
