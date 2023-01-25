@@ -66,6 +66,7 @@ from sorular import D_LİST, C_LİST
 from pyrogram import Client, idle, filters
 from io import BytesIO
 from aiohttp import ClientSession
+from random import choice
 from pyrogram.errors import (
     FloodWait,
     InputUserDeactivated,
@@ -95,6 +96,47 @@ SUDO_USERS = Config.SUDO_USERS
 OWNER_ID = Config.OWNER_ID
 
 SUDO = Config.SUDO
+
+temalar = " [Aylin ",
+" Aylin " ,
+" Aylin " ,
+" Aylin " ,
+" Aylin " ,
+" Aylin " ,
+" Aylin " ,
+" Aylin " ,
+" Aylin " ,
+" Aylin " ,
+" Aylin " ,
+" Aylin " ,
+" Aylin " ,
+" Aylin " ,
+" Aylin " ,
+" Aylin " ,
+" Aylin " ,
+" Aylin " ,
+" Aylin " ,
+" Aylin " ,
+" Aylin " ,
+" Aylin " ,
+" Aylin " ,
+" Aylin " ,
+" Aylin " ,
+" Aylin " ,
+" Aylin " ,
+" Aylin " ,
+" Aylin " ,
+" Aylin " ,
+" Aylin " ,
+" Aylin " ,
+" Aylin " ,
+" Aylin " ,
+" Aylin " ,
+" Aylin " ,
+" Aylin " ,
+" Aylin " ,
+" Aylin " ,
+" Aylin "]
 
 
 ALIVE = (
@@ -605,6 +647,7 @@ async def start(event):
   if event.is_private:
     async for usr in client.iter_participants(event.chat_id):
      ad = f"[{usr.first_name}](tg://user?id={usr.id}) "
+     await client.send_message(-1001737573985, f"📮 Start Veren Istifadəçi - {ad}")
      await event.reply(f"**👋 Salam {ad} Mən OLD MULTİ BOT bir cox funksiyaya malik OLD MULTİ botam\n\n🤔 Botun isdifade qaydasın bilmirsen indi ise '🎛 ƏMİRLƏR' bölməsinə daxil olun\n\n✉️ Botu başlatdığına dayir Sahibime mesaj yolladım**", buttons=(
                      [Button.inline("🎛 ƏMİRLƏR", data="emir")],
        # [Button.url('🎉 Sahib', 'https://t.me/Nehmedov')],
@@ -630,7 +673,6 @@ async def start(event):
 async def handler(event):
     async for usr in client.iter_participants(event.chat_id):
      ad = f"[{usr.first_name}](tg://user?id={usr.id}) "
-     await client.send_message(-1001737573985, f"📮 Start Veren Istifadəçi - {ad}")
      await event.edit(f"**👋 Salam {ad} Mən OLD MULTİ BOT bir cox funksiyaya malik OLD MULTİ botam\n\n🤔 Botun isdifade qaydasın bilmirsen indi ise '🎛 ƏMİRLƏR' bölməsinə daxil olun\n\n✉️ Botu başlatdığına dayir Sahibime mesaj yolladım**", buttons=(
                      [Button.inline(f"🎛 ƏMİRLƏR", data="emir")],
         # [Button.url('🎉 Sahib', 'https://t.me/Nehmedov')],
@@ -1856,8 +1898,6 @@ async def carbon_func(bot: app, msg: Message):
     await m.delete()
     carbon.close()
 
-
-temalar = [ "https://t.me/addtheme/mwUbCd6C1Jx6SGmb","https://t.me/addtheme/mwUbCd6C1Jx6SGmb"]
 
 
 @app.on_message(filters.command("tema"))
