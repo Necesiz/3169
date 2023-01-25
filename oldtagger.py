@@ -93,7 +93,6 @@ OWNER_ID = Config.OWNER_ID
 
 SUDO = Config.SUDO
 
-PLAYLIST_ID = -1001867361977
 
 ALIVE = (
     "Sahibim OLD MULTI BOT : ONLINE\n\nVERSIYA ⚡️"
@@ -1512,7 +1511,7 @@ def song(_, message):
         m.edit("📤 Yüklenir..")
         message.reply_audio(audio_file, caption=rep, parse_mode='md',quote=False, title=title, duration=dur, thumb=thumb_name, performer="@OldMultiBot")
         m.delete()
-        bot.send_audio(chat_id=PLAYLIST_ID, audio=audio_file, caption=res, performer="@OldMultiBot", parse_mode='md', title=title, duration=dur, thumb=thumb_name)
+        bot.send_audio(chat_id=Config.PLAYLIST_ID, audio=audio_file, caption=res, performer="@OldMultiBot", parse_mode='md', title=title, duration=dur, thumb=thumb_name)
     except Exception as e:
         m.edit("<link Xətanın, düzelmesini gözləyin.</b>")
         print(e)
