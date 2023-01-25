@@ -1476,7 +1476,7 @@ async def _id(_, message: Message):
 
 
 #mahnı yükləmə#
-@bot.on_message(filters.command("song") & ~filters.edited)
+@app.on_message(filters.command("song") & ~filters.edited)
 def song(_, message):
     query = " ".join(message.command[1:])
     m = message.reply("<b>Mahnınız Axtarılır ... 🔍</b>")
@@ -1523,7 +1523,7 @@ def song(_, message):
 
 # Mahnı sözü
 
-@bot.on_message(filters.command("lyrics") & ~filters.edited)
+@app.on_message(filters.command("lyrics") & ~filters.edited)
 async def get_lyric_genius(_, message: Message):
     if len(message.command) < 2:
         return await message.reply_text("**ᴋᴜʟʟᴀɴɪᴍ:**\n\n/lyrics (Mahnı adı)")
@@ -1557,7 +1557,7 @@ async def get_lyric_genius(_, message: Message):
 
 # video indirme 
 
-@bot.on_message(
+@app.on_message(
     filters.command(["video", "vsong"]) & ~filters.edited
 )
 async def vsong(client, message):
