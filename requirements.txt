@@ -13,7 +13,7 @@ youtube_search
 yt_dlp
 ffmpeg
 telegraph
-lyricsgenius
+lyricsgenius==3.0.1
 speedtest
 aiohttp
 cryptography
