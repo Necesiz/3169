@@ -18,3 +18,4 @@ speedtest
 aiohttp
 cryptography
 wget
+lyricsgenius
