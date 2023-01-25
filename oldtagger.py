@@ -93,6 +93,8 @@ OWNER_ID = Config.OWNER_ID
 
 SUDO = Config.SUDO
 
+PLAYLIST_ID = Config.PLAYLIST_ID
+
 ALIVE = (
     "Sahibim OLD MULTI BOT : ONLINE\n\nVERSIYA ⚡️"
     f"\nv{__version__}"
@@ -1492,7 +1494,7 @@ def song(_, message):
         duration = results[0]["duration"]
 
     except Exception as e:
-        m.edit("<b>❌ Bunu deməliyəm üzürlü say 😔 mahnı tapılmadı.\n\n Zəhmət Olmasa başqa mahnı adı deyin @oldsupport 🍷.</b>")
+        m.edit("<b>❌ Bunu deməliyəm üzürlü say 😔 mahnı tapılmadı.\n\n Zəhmət Olmasa başqa mahnı adı deyin @AnonyumAz 🍷.</b>")
         print(str(e))
         return
     m.edit("<b>📥 Yükləmə Prosesi Başladı...</b>")
@@ -1508,9 +1510,9 @@ def song(_, message):
             dur += int(float(dur_arr[i])) * secmul
             secmul *= 60
         m.edit("📤 Yüklenir..")
-        message.reply_audio(audio_file, caption=rep, parse_mode='md',quote=False, title=title, duration=dur, thumb=thumb_name, performer="@AzeSongRobot")
+        message.reply_audio(audio_file, caption=rep, parse_mode='md',quote=False, title=title, duration=dur, thumb=thumb_name, performer="@OldMultiBot")
         m.delete()
-        bot.send_audio(chat_id=Config.PLAYLIST_ID, audio=audio_file, caption=res, performer="@AzeSongRobot", parse_mode='md', title=title, duration=dur, thumb=thumb_name)
+        bot.send_audio(chat_id=PLAYLIST_ID, audio=audio_file, caption=res, performer="@OldMultiBot", parse_mode='md', title=title, duration=dur, thumb=thumb_name)
     except Exception as e:
         m.edit("<link Xətanın, düzelmesini gözləyin.</b>")
         print(e)
