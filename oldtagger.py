@@ -63,6 +63,11 @@ from pyrogram import filters
 from cryptography.fernet import Fernet
 from AykhanPro.komekci import random_line
 from sorular import D_LİST, C_LİST
+from Config import GENIUS_API
+from pyrogram import Client as Medusa,filters
+from pyrogram.types import Message
+from lyricsgenius import genius
+from pyrogram.errors.exceptions.bad_request_400 import MessageTooLong
 from pyrogram.errors import (
     FloodWait,
     InputUserDeactivated,
@@ -1524,36 +1529,52 @@ def song(_, message):
 
 # Mahnı sözü
 
-@app.on_message(filters.command("lyrics") & ~filters.edited)
-async def get_lyric_genius(_, message: Message):
-    if len(message.command) < 2:
-        return await message.reply_text("**ᴋᴜʟʟᴀɴɪᴍ:**\n\n/lyrics (Mahnı adı)")
-    m = await message.reply_text("🔍 Mahnı sözleri axtarılır ...")
-    query = message.text.split(None, 1)[1]
-    x = "Vd9FvPMOKWfsKJNG9RbZnItaTNIRFzVyyXFdrGHONVsGqHcHBoj3AI3sIlNuqzuf0ZNG8uLcF9wAd5DXBBnUzA"
-    y = lyricsgenius.Genius(x)
-    y.verbose = False
-    S = y.search_song(query, get_full_info=False)
-    if S is None:
-        return await m.edit("❌ `404` Mahnı sözleri tapılmadı")
-    xxx = f"""
-**sᴀʀᴋɪ:** {query}
-**sᴀɴᴀᴛᴄɪ:** {S.artist}
-**sᴀʀᴋɪ sᴏᴢᴜ:**
-{S.lyrics}"""
-    if len(xxx) > 4096:
-        await m.delete()
-        filename = "lyrics.txt"
-        with open(filename, "w+", encoding="utf8") as out_file:
-            out_file.write(str(xxx.strip()))
-        await message.reply_document(
-            document=filename,
-            caption=f"**OUTPUT:**\n\n`Lyrics Text`",
-            quote=False,
+api = genius.Genius(GENIUS_API,verbose=False)
+
+
+@app.on_message(filters.command(['lyrics','lyric']))
+    & (filters.group | filters.private) 
+    & ~ filters.edited)
+async def lyrics(medusa:Medusa,msg: Message):
+
+    if len(msg.command) == 1:
+        return await msg.reply(
+            text='__Please specify the query...__', 
         )
-        os.remove(filename)
-    else:
-        await m.edit(xxx)
+
+    r_text = await msg.reply('__Searching...__')
+    song_name = msg.text.split(None, 1)[1]
+
+    lyric = api.search_song(song_name)
+
+    if lyric is None:return await r_text.edit('__No lyrics found for your query...__')
+
+    lyric_title = lyric.title
+    lyric_artist = lyric.artist
+    lyrics_text = lyric.lyrics
+
+    try:
+        await r_text.edit_text(f'__--**{lyric_title}**--__\n__{lyric_artist}\n__\n\n__{lyrics_text}__\n__Extracted by @MedusaMousikibot__')
+
+    except MessageTooLong:
+        with open(f'downloads/{lyric_title}.txt','w') as f:
+            f.write(f'{lyric_title}\n{lyric_artist}\n\n\n{lyrics_text}')
+
+        await r_text.edit_text('__Lyric too long. Sending as a text file...__')
+        await msg.reply_chat_action(
+            action='upload_document'
+        )
+        await msg.reply_document(
+            document=f'downloads/{lyric_title}.txt',
+            thumb='src/Medusa320px.png',
+            caption=f'\n__--{lyric_title}--__\n__{lyric_artist}__\n\n__Extracted by @MedusaMousikibot__'
+        )
+
+        await r_text.delete()
+        
+        
+        os.remove(f'downloads/{lyric_title}.txt')
+
 
 
 # video indirme 
