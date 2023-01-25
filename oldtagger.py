@@ -63,11 +63,6 @@ from pyrogram import filters
 from cryptography.fernet import Fernet
 from AykhanPro.komekci import random_line
 from sorular import D_LİST, C_LİST
-from Config import GENIUS_API
-from pyrogram import Client as Medusa,filters
-from pyrogram.types import Message
-from lyricsgenius import genius
-from pyrogram.errors.exceptions.bad_request_400 import MessageTooLong
 from pyrogram.errors import (
     FloodWait,
     InputUserDeactivated,
@@ -675,7 +670,7 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="yhelp"))
 async def handler(event): 
-    await event.edit(f"**[@OldMultiBot](http://t.me/OldMultiBot)-un '📥 YÜKLƏMƏ' bölməsi ⤵**\n\n\n•━━━━━━━━•••━━━━━━━━•\n**🎵 ➪  /song - MAHNI YÜKLƏYİR**\n**⛓️ ➪ Telegrap - Bota şexside photo,video,gif ataraq telegrap linki ala bilersiz Əmir şəxsidə çalışır**\n•━━━━━━━━•••━━━━━━━━•", buttons=(
+    await event.edit(f"**[@OldMultiBot](http://t.me/OldMultiBot)-un '📥 YÜKLƏMƏ' bölməsi ⤵**\n\n\n•━━━━━━━━•••━━━━━━━━•\n**🎵 ➪  /song - MAHNI YÜKLƏYİR**\n**📽 /vsong ve /video - Youtubdan  video yukleyin**\n**⛓️ ➪ Telegrap - Bota şexside photo,video,gif ataraq telegrap linki ala bilersiz Əmir şəxsidə çalışır**\n•━━━━━━━━•••━━━━━━━━•", buttons=(
               # [Button.url('➕ Məni Qrupa əlavə et ➕','http://t.me/UstaTagbot?startgroup=a')],
          #[Button.url('🎉 Sahib', 'https://t.me/Nehmedov')],
                [Button.url('🔮 Kanalım','https://t.me/TEAMABASOFcom'),
@@ -1507,7 +1502,7 @@ def song(_, message):
             info_dict = ydl.extract_info(link, download=False)
             audio_file = ydl.prepare_filename(info_dict)
             ydl.process_info(info_dict)
-        rep = f"**╭───────────────**\n**├▷ ♬ Adı: [{title[:35]}]({link})**\n**├───────────────**\n**├▷👤 İstəyən [{message.from_user.first_name}](tg://user?id={message.from_user.id})\n**├▷BOT @OldMultiBot**\n**╰───────────────**"
+        rep = f"**╭───────────────**\n**├▷ ♬ Adı: [{title[:35]}]({link})**\n**├───────────────**\n**├▷👤 İstəyən [{message.from_user.first_name}](tg://user?id={message.from_user.id})**\n**├▷BOT @OldMultiBot**\n**╰───────────────**"
         res = f"**╭───────────────**\n**├▷ ♬ Adı: [{title[:35]}]({link})**\n**├───────────────**\n**├▷👤 İstəyən** [{message.from_user.first_name}](tg://user?id={message.from_user.id})\n**├───────────────**\n**├▷🌀 Bot: @{Config.BOT_USERNAME}**\n**╰───────────────**"
         secmul, dur, dur_arr = 1, 0, duration.split(":")
         for i in range(len(dur_arr) - 1, -1, -1):
@@ -1526,54 +1521,6 @@ def song(_, message):
         os.remove(thumb_name)
     except Exception as e:
         print(e)
-
-# Mahnı sözü
-
-api = genius.Genius(GENIUS_API,verbose=False)
-
-
-@app.on_message(filters.command("lyrics","lyric") & ~filters.edited)
-async def lyrics(medusa:Medusa,msg: Message):
-
-    if len(msg.command) == 1:
-        return await msg.reply(
-            text='__Please specify the query...__', 
-        )
-
-    r_text = await msg.reply('__Searching...__')
-    song_name = msg.text.split(None, 1)[1]
-
-    lyric = api.search_song(song_name)
-
-    if lyric is None:return await r_text.edit('__No lyrics found for your query...__')
-
-    lyric_title = lyric.title
-    lyric_artist = lyric.artist
-    lyrics_text = lyric.lyrics
-
-    try:
-        await r_text.edit_text(f'__--**{lyric_title}**--__\n__{lyric_artist}\n__\n\n__{lyrics_text}__\n__Extracted by @MedusaMousikibot__')
-
-    except MessageTooLong:
-        with open(f'downloads/{lyric_title}.txt','w') as f:
-            f.write(f'{lyric_title}\n{lyric_artist}\n\n\n{lyrics_text}')
-
-        await r_text.edit_text('__Lyric too long. Sending as a text file...__')
-        await msg.reply_chat_action(
-            action='upload_document'
-        )
-        await msg.reply_document(
-            document=f'downloads/{lyric_title}.txt',
-            thumb='src/Medusa320px.png',
-            caption=f'\n__--{lyric_title}--__\n__{lyric_artist}__\n\n__Extracted by @MedusaMousikibot__'
-        )
-
-        await r_text.delete()
-        
-        
-        os.remove(f'downloads/{lyric_title}.txt')
-
-
 
 # video indirme 
 
