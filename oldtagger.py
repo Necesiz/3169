@@ -640,7 +640,7 @@ async def delcmdc(bot: Client, message: Message):
 
 
   
-rehim = TelegramClient('client', api_id, api_hash).start(bot_token=bot_token)
+client = TelegramClient('client', api_id, api_hash).start(bot_token=bot_token)
 
 anlik_calisan = [] 
 
