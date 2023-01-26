@@ -867,7 +867,7 @@ async def roll_bowling(bot, message):
  
 
 #telethon xos geldin mesaj 
-@client.on(events.ChatAction) 
+@rehim.on(events.ChatAction) 
 async def handler(event): # Welcome every new user 
     if event.user_joined: 
        await event.reply('Salam xos geldiniz groupa!')
