@@ -851,7 +851,7 @@ async def cancel_spam(event):
       anlik_calisan.remove(event.chat_id)
     except:
       pass
-    return await event.respond('✅ Tag prosesi uğurla dayandırıldı.**\n\n**Tag olunan Kişi Sayısı:** {rxyzdev_tagTot[event.chat_id]}.')
+    return await event.respond(f"**✅ Tag prosesi uğurla dayandırıldı.**\n\n**Tag olunan Kişi Sayısı:** {rxyzdev_tagTot[event.chat_id]}")
 
 
 @rehim.on(events.NewMessage(pattern="^/futbol ?(.*)"))
@@ -944,7 +944,7 @@ async def cancel_spam(event):
       anlik_calisan.remove(event.chat_id)
     except:
       pass
-    return await event.respond('✅ Tag prosesi uğurla dayandırıldı.**\n\n**Tag olunan Kişi Sayısı:** {rxyzdev_tagTot[event.chat_id]}.')
+    return await event.respond(f"**✅ Tag prosesi uğurla dayandırıldı.**\n\n**Tag olunan Kişi Sayısı:** {rxyzdev_tagTot[event.chat_id]}")
 
 # Bayraklarla tag komutu. 
 @rehim.on(events.NewMessage(pattern="^/btag ?(.*)"))
@@ -1035,7 +1035,7 @@ async def cancel_spam(event):
       anlik_calisan.remove(event.chat_id)
     except:
       pass
-    return await event.respond('✅ Tag prosesi uğurla dayandırıldı.**\n\n**Tag olunan Kişi Sayısı:** {rxyzdev_tagTot[event.chat_id]}.')
+    return await event.respond(f"**✅ Tag prosesi uğurla dayandırıldı.**\n\n**Tag olunan Kişi Sayısı:** {rxyzdev_tagTot[event.chat_id]}")
 
 # -------------------Tagger-------------------------------
 @rehim.on(events.NewMessage(pattern="^/tag ?(.*)"))
