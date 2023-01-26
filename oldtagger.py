@@ -692,7 +692,7 @@ async def handler(event):
     async for usr in client.iter_participants(event.chat_id):
      ad = f"[{usr.first_name}](tg://user?id={usr.id}) "
      await event.edit(f"**🤩 Siz artıq ƏMRLƏR bölümündesiz\n\n🫡 Hansı əmri isdəsəniz aşağıda Buttonla vuraraq baxa bilersiz\n\n🩶 XOŞ İSDİFADELER @OldMultiBot**", buttons=(
-                     [Button.inline("🌟 ADMİN ƏMRLƏR", data="admin")],
+                     [Button.inline("🌟 ADMİN ƏMRLƏR", data="ahelp")],
         # [Button.url('🎉 Sahib', 'https://t.me/Nehmedov')],
                #[Button.url('Qurup🛠', 'https://t.me/Bizim_Paytaxt'),
                       #Button.url('🤖 USTA Bots', 'https://t.me/ustabots')],
@@ -749,7 +749,7 @@ async def handler(event):
                     ),
                     link_preview=False)
 
-@rehim.on(events.callbackquery.CallbackQuery(data="admin"))
+@rehim.on(events.callbackquery.CallbackQuery(data="ahelp"))
 async def handler(event): 
     await event.edit(f"**[@OldMultiBot](http://t.me/OldMultiBot)-un '🌟 ADMİN ƏMRLƏRİ' bölməsi ⤵**\n\n\n•━━━━━━━━•••━━━━━━━━•\n**🌟 ➪ /pin - test**\n**🌟 ➪ /unpin - test**\n•━━━━━━━━•••━━━━━━━━•", buttons=(
               # [Button.url('➕ Məni Qrupa əlavə et ➕','http://t.me/UstaTagbot?startgroup=a')],
