@@ -751,7 +751,7 @@ async def handler(event):
 
 @rehim.on(events.callbackquery.CallbackQuery(data="ahelp"))
 async def handler(event): 
-    await event.edit(f"**[@OldMultiBot](http://t.me/OldMultiBot)-un '🌟 ADMİN ƏMRLƏRİ' bölməsi ⤵**\n\n\n•━━━━━━━━•••━━━━━━━━•\n**🌟 ➪ /pin - test**\n**🌟 ➪ /unpin - test**\n•━━━━━━━━•••━━━━━━━━•", buttons=(
+    await event.edit(f"**[@OldMultiBot](http://t.me/OldMultiBot)-un '🌟 ADMİN ƏMRLƏRİ' bölməsi ⤵**\n\n\n•━━━━━━━━•••━━━━━━━━•\n**🌟 ➪ /pin - Groupda mesaj sabitleyir**\n**🌟 ➪ /unpin - bot kendi etdiyi mesajı sabitden qaldırar**\n•━━━━━━━━•••━━━━━━━━•", buttons=(
               # [Button.url('➕ Məni Qrupa əlavə et ➕','http://t.me/UstaTagbot?startgroup=a')],
          #[Button.url('🎉 Sahib', 'https://t.me/Nehmedov')],
                [Button.url('🔮 Kanalım','https://t.me/TEAMABASOFcom'),
@@ -1600,6 +1600,17 @@ async def carbon_func(bot: app, msg: Message):
 @app.on_message(filters.command("tema"))
 async def tema(app: Client, msg: Message):
     await msg.reply(random.choice(temalar))
+
+
+
+@app.on_message(filters.command("ping"))
+async def ping(_, message):
+    start_t = time.time()
+    rm = await message.reply_text("...")
+    end_t = time.time()
+    time_taken_s = (end_t - start_t) * 1000
+    await rm.edit(f"Pong!\n{time_taken_s:.3f} ms")
+
 
 
 #@(events.NewMessage(pattern='/reklam'))
