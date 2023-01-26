@@ -11,7 +11,6 @@ import configparser
 from asyncio import sleep
 from telethon import events
 from telethon import __version__ as s
-import time
 import asyncio
 import os
 from Config import Config 
@@ -26,6 +25,7 @@ import datetime
 import motor.motor_asyncio
 from motor.motor_asyncio import AsyncIOMotorClient as MongoClient
 import asyncio
+import time
 import datetime
 import shutil, psutil, traceback, os
 import random
