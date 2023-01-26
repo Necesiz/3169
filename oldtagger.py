@@ -664,7 +664,7 @@ async def start(event):
 
 
   if event.is_group:
-    return await client.send_message(event.chat_id, f"**Əziz isdifadeçi Qroupda cox yazmaqla başınızı ağrıtmıyım Bota Keç vuraraq şexside melumat ala bilersiz**", buttons=(
+    return await rehim.send_message(event.chat_id, f"**Əziz isdifadeçi Qroupda cox yazmaqla başınızı ağrıtmıyım Bota Keç vuraraq şexside melumat ala bilersiz**", buttons=(
                      [Button.url('💡 Bota Keç','https://t.me/OldMultiBot?start=start')],
                     ),
                     link_preview=False)
@@ -765,7 +765,7 @@ anlik_calisan = []
 rxyzdev_tagTot = {}
 rxyzdev_initT = {}
 
-@rehim.on(events.NewMessage(pattern="^/admim ?(.*)"))
+@rehim.on(events.NewMessage(pattern="^/admin ?(.*)"))
 async def mentionalladmin(event):
   global anlik_calisan 
   rxyzdev_tagTot[event.chat_id] = 0
