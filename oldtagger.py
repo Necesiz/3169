@@ -643,9 +643,10 @@ async def delcmdc(bot: Client, message: Message):
 rehim = TelegramClient('client', api_id, api_hash).start(bot_token=bot_token)
 
 anlik_calisan = [] 
+
 tekli_calisan = []
 
-@rehim.on(events.NewMessage(pattern="^/start$"))
+@client.on(events.NewMessage(pattern="^/start$"))
 async def start(event):
   if event.is_private:
     async for usr in rehim.iter_participants(event.chat_id):
@@ -671,7 +672,7 @@ async def start(event):
 
 
 
-@rehim.on(events.callbackquery.CallbackQuery(data="start"))
+@client.on(events.callbackquery.CallbackQuery(data="start"))
 async def handler(event):
     async for usr in rehim.iter_participants(event.chat_id):
      ad = f"[{usr.first_name}](tg://user?id={usr.id}) "
@@ -687,7 +688,7 @@ async def handler(event):
                     ),
                     link_preview=False)
 
-@rehim.on(events.callbackquery.CallbackQuery(data="emir"))
+@client.on(events.callbackquery.CallbackQuery(data="emir"))
 async def handler(event):
     async for usr in rehim.iter_participants(event.chat_id):
      ad = f"[{usr.first_name}](tg://user?id={usr.id}) "
@@ -705,7 +706,7 @@ async def handler(event):
                     link_preview=False)
 
 # rehim / abasof
-@rehim.on(events.callbackquery.CallbackQuery(data="thelp"))
+@client.on(events.callbackquery.CallbackQuery(data="thelp"))
 async def handler(event): 
     await event.edit(f"**[@OldMultiBot](http://t.me/OldMultiBot)-un '📮TAG ƏMRLƏR' bölməsi ⤵**\n\n\n•━━━━━━━━•••━━━━━━━━•\n**🤖➪ /admin - Group adminlərin tag edir**\n**🤖 ➪ /btag - Bayraqla tag edin**\n**🤖 ➪ /futbol - Futbolçu adları ile tag eder**\n***🤖 ➪ /tag - 6 lı tag edər**\n**🤖 ➪ /ttag - Tək - Tək tag edir**\n•━━━━━━━━•••━━━━━━━━•", buttons=(
               # [Button.url('➕ Məni Qrupa əlavə et ➕','http://t.me/UstaTagbot?startgroup=a')],
@@ -716,7 +717,7 @@ async def handler(event):
                     ),
                     link_preview=False)
 
-@rehim.on(events.callbackquery.CallbackQuery(data="yhelp"))
+@client.on(events.callbackquery.CallbackQuery(data="yhelp"))
 async def handler(event): 
     await event.edit(f"**[@OldMultiBot](http://t.me/OldMultiBot)-un '📥 YÜKLƏMƏ' bölməsi ⤵**\n\n\n•━━━━━━━━•••━━━━━━━━•\n**🎵 ➪  /song - MAHNI YÜKLƏYİR**\n**📽 ➪ /video və ya /vsong - İsdədiyiniz videonu Youtub dan yükləyər\n**⛓️ ➪ Telegrap - Bota şexside photo,video,gif ataraq telegrap linki ala bilersiz Əmir şəxsidə çalışır**\n•━━━━━━━━•••━━━━━━━━•", buttons=(
               # [Button.url('➕ Məni Qrupa əlavə et ➕','http://t.me/UstaTagbot?startgroup=a')],
@@ -727,7 +728,7 @@ async def handler(event):
                     ),
                     link_preview=False)
 
-@rehim.on(events.callbackquery.CallbackQuery(data="dhelp"))
+@client.on(events.callbackquery.CallbackQuery(data="dhelp"))
 async def handler(event): 
     await event.edit(f"**[@OldMultiBot](http://t.me/OldMultiBot)-un '🕹 GAME' bölməsi ⤵**\n\n\n•━━━━━━━━•••━━━━━━━━•\n**☸️ ➪ /dc - Doğruluq Və Cəsarət oyunu basladır**\n**🎲 ➪ /zer - Zər atar**\n**🎯 ➪ /ox - Ox atar**\n**⚽️ ➪ /gol - Goal atar**\n**🎰 ➪ /spin - Spin cevir**\n**🏀 ➪ /basket - Basket atar**\n**🎳 ➪ /bowling - Bowling atar**\n•━━━━━━━━•••━━━━━━━━•", buttons=(
               # [Button.url('➕ Məni Qrupa əlavə et ➕','http://t.me/UstaTagbot?startgroup=a')],
@@ -738,7 +739,7 @@ async def handler(event):
                     ),
                     link_preview=False)
 
-@rehim.on(events.callbackquery.CallbackQuery(data="elave"))
+@client.on(events.callbackquery.CallbackQuery(data="elave"))
 async def handler(event): 
     await event.edit(f"**[@OldMultiBot](http://t.me/OldMultiBot)-un '➕️ ƏLAVƏLƏR' bölməsi ⤵**\n\n\n•━━━━━━━━•••━━━━━━━━•\n**🪪 ➪ /info - Kullanıcı melumat getirii**\n**📈 ➪ /ping - Botun pingin ölçür**\n**🎚 ➪ /alive Botun aktiv olmaqın gosterir Sahib isdifade ede biler**\n**😔 ➪ /sehid - şəhid adları atır**\n**🤖 ➪ /anekdod - Random anekdod atar**\n**🤖 ➪ /meslehet - Botdan Məsləhət alin**\n**🤖 ➪ /carbon - Mətini carbona dönüşdür (Qroupda isliyir)**\n**🤖 ➪ /tema - Random Telegram Teması atar (Qroupda isliyir)**\n**👋 ➪ salamlama - Groupa qatılanlara xoş geldin deyir**\n•━━━━━━━━•••━━━━━━━━•", buttons=(
               # [Button.url('➕ Məni Qrupa əlavə et ➕','http://t.me/UstaTagbot?startgroup=a')],
@@ -749,7 +750,7 @@ async def handler(event):
                     ),
                     link_preview=False)
 
-@rehim.on(events.callbackquery.CallbackQuery(data="ahelp"))
+@client.on(events.callbackquery.CallbackQuery(data="ahelp"))
 async def handler(event): 
     await event.edit(f"**[@OldMultiBot](http://t.me/OldMultiBot)-un '🌟 ADMİN ƏMRLƏRİ' bölməsi ⤵**\n\n\n•━━━━━━━━•••━━━━━━━━•\n**🌟 ➪ /pin - Groupda mesaj sabitleyir**\n**🌟 ➪ /unpin - bot kendi etdiyi mesajı sabitden qaldırar**\n•━━━━━━━━•••━━━━━━━━•", buttons=(
               # [Button.url('➕ Məni Qrupa əlavə et ➕','http://t.me/UstaTagbot?startgroup=a')],
@@ -1649,7 +1650,7 @@ async def roll_bowling(bot, message):
  
 
 #telethon xos geldin mesaj 
-@rehim.on(events.ChatAction) 
+@client.on(events.ChatAction) 
 async def handler(event): # Welcome every new user 
     if event.user_joined: 
        await event.reply('Salam xos geldiniz groupa!')
