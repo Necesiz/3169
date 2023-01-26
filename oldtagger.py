@@ -707,7 +707,7 @@ async def handler(event):
 # rehim / abasof
 @rehim.on(events.callbackquery.CallbackQuery(data="thelp"))
 async def handler(event): 
-    await event.edit(f"**[@OldMultiBot](http://t.me/OldMultiBot)-un '📮TAG ƏMRLƏR' bölməsi ⤵**\n\n\n•━━━━━━━━•••━━━━━━━━•\n**🤖➪ /yt - desdek**\n•━━━━━━━━•••━━━━━━━━•", buttons=(
+    await event.edit(f"**[@OldMultiBot](http://t.me/OldMultiBot)-un '📮TAG ƏMRLƏR' bölməsi ⤵**\n\n\n•━━━━━━━━•••━━━━━━━━•\n**🤖➪ /admin - Group adminlərin tag edir**\n•━━━━━━━━•••━━━━━━━━•", buttons=(
               # [Button.url('➕ Məni Qrupa əlavə et ➕','http://t.me/UstaTagbot?startgroup=a')],
          #[Button.url('🎉 Sahib', 'https://t.me/Nehmedov')],
                [Button.url('🔮 Kanalım','https://t.me/TEAMABASOFcom'),
@@ -718,7 +718,7 @@ async def handler(event):
 
 @rehim.on(events.callbackquery.CallbackQuery(data="yhelp"))
 async def handler(event): 
-    await event.edit(f"**[@OldMultiBot](http://t.me/OldMultiBot)-un '📥 YÜKLƏMƏ' bölməsi ⤵**\n\n\n•━━━━━━━━•••━━━━━━━━•\n**🎵 ➪  /song - MAHNI YÜKLƏYİR**\n**⛓️ ➪ Telegrap - Bota şexside photo,video,gif ataraq telegrap linki ala bilersiz Əmir şəxsidə çalışır**\n•━━━━━━━━•••━━━━━━━━•", buttons=(
+    await event.edit(f"**[@OldMultiBot](http://t.me/OldMultiBot)-un '📥 YÜKLƏMƏ' bölməsi ⤵**\n\n\n•━━━━━━━━•••━━━━━━━━•\n**🎵 ➪  /song - MAHNI YÜKLƏYİR**\n**📽 ➪ /video və ya /vsong - İsdədiyiniz videonu Youtub dan yükləyər\n**⛓️ ➪ Telegrap - Bota şexside photo,video,gif ataraq telegrap linki ala bilersiz Əmir şəxsidə çalışır**\n•━━━━━━━━•••━━━━━━━━•", buttons=(
               # [Button.url('➕ Məni Qrupa əlavə et ➕','http://t.me/UstaTagbot?startgroup=a')],
          #[Button.url('🎉 Sahib', 'https://t.me/Nehmedov')],
                [Button.url('🔮 Kanalım','https://t.me/TEAMABASOFcom'),
@@ -740,7 +740,7 @@ async def handler(event):
 
 @rehim.on(events.callbackquery.CallbackQuery(data="elave"))
 async def handler(event): 
-    await event.edit(f"**[@OldMultiBot](http://t.me/OldMultiBot)-un '➕️ ƏLAVƏLƏR' bölməsi ⤵**\n\n\n•━━━━━━━━•••━━━━━━━━•\n**🪪 ➪ /info - Kullanıcı melumat getirii**\n**📈 ➪ /ping - Botun pingin ölçür**\n**🎚 ➪ /alive Botun aktiv olmaqın gosterir Sahib isdifade ede biler**\n**👋 ➪ salamlama - Groupa qatılanlara xoş geldin deyir**\n•━━━━━━━━•••━━━━━━━━•", buttons=(
+    await event.edit(f"**[@OldMultiBot](http://t.me/OldMultiBot)-un '➕️ ƏLAVƏLƏR' bölməsi ⤵**\n\n\n•━━━━━━━━•••━━━━━━━━•\n**🪪 ➪ /info - Kullanıcı melumat getirii**\n**📈 ➪ /ping - Botun pingin ölçür**\n**🎚 ➪ /alive Botun aktiv olmaqın gosterir Sahib isdifade ede biler**\n**😔 ➪ /sehid - şəhid adları atır**\n**🤖 ➪ /anekdod - Random anekdod atar**\n**🤖 ➪ /meslehet - Botdan Məsləhət alin**\n**🤖 ➪ /carbon - Mətini carbona dönüşdür (Qroupda isliyir)**\n**🤖 ➪ /tema - Random Telegram Teması atar (Qroupda isliyir)**\n**👋 ➪ salamlama - Groupa qatılanlara xoş geldin deyir**\n•━━━━━━━━•••━━━━━━━━•", buttons=(
               # [Button.url('➕ Məni Qrupa əlavə et ➕','http://t.me/UstaTagbot?startgroup=a')],
          #[Button.url('🎉 Sahib', 'https://t.me/Nehmedov')],
                [Button.url('🔮 Kanalım','https://t.me/TEAMABASOFcom'),
@@ -765,18 +765,18 @@ anlik_calisan = []
 rxyzdev_tagTot = {}
 rxyzdev_initT = {}
 
-@rehim.on(events.NewMessage(pattern="^/yt ?(.*)"))
+@rehim.on(events.NewMessage(pattern="^/admim ?(.*)"))
 async def mentionalladmin(event):
   global anlik_calisan 
   rxyzdev_tagTot[event.chat_id] = 0
   if event.is_private:
-    return await event.respond("Bu komutu sadece grup veya kanallarda kullanabilirsiniz.")
+    return await event.respond("Bu əmr sadəcə grup vəya kanallarda isdifadə edilə bilər.")
   
   admins = []
   async for admin in rehim.iter_participants(event.chat_id, filter=ChannelParticipantsAdmins):
     admins.append(admin.id)
   if not event.sender_id in admins:
-    return await event.respond("**Bu komutu sadece yöneticiler kullanabilir.**")
+    return await event.respond("**Bu əmri sadəcə yönəticilər isdifadə edə bilər.**")
   
   if event.pattern_match.group(1):
     mode = "text_on_cmd"
@@ -785,17 +785,17 @@ async def mentionalladmin(event):
     mode = "text_on_reply"
     msg = event.reply_to_msg_id
     if msg == None:
-        return await event.respond("__Eski Mesajlar için Üyelerden Bahsedemem! (gruba eklemeden önce gönderilen mesajlar)__")
+        return await event.respond("__Köhnə mesajlar üçün Kişilərdən bəhs edənmərəm! (qrouba əlavə etmədən öncə olan mesajlar)__")
   elif event.pattern_match.group(1) and event.reply_to_msg_id:
     return await event.respond("Bana bir metin verin.")
   else:
-    return await event.respond("**Etikete Başlamak için sebep yazın... ✋\n\n(Örnek: /yt Herkese Merhaba!)**")
+    return await event.respond("**Tag etməyə Başlamaq üçün səbəb yazın... ✋\n\n(Məsələn: /yt Salam necəsən!)**")
   
   if mode == "text_on_cmd":
     anlik_calisan.append(event.chat_id)
     usrnum = 0
     usrtxt = ""
-    await event.respond("**✅ Etiket işlemi başladı.**")
+    await event.respond("**✅ Tag prosesi başladı.**")
         
     async for usr in rehim.iter_participants(event.chat_id,filter=ChannelParticipantsAdmins):
       rxyzdev_tagTot[event.chat_id] += 1
@@ -812,7 +812,7 @@ async def mentionalladmin(event):
     sender = await event.get_sender()
     rxyzdev_initT = f"{sender.first_name}"      
     if event.chat_id in rxyzdev_tagTot:
-           a = await event.respond(f"**✅ Etiket işlemi başarıyla durduruldu.**\n\n**Etiketlenen Kişi Sayısı:** {rxyzdev_tagTot[event.chat_id]}")
+           a = await event.respond(f"**✅ Tag prosesi uğurla dayandırıldı.**\n\n**Tag olunan Kişi Sayısı:** {rxyzdev_tagTot[event.chat_id]}")
            await sleep(10)
            await a.delete()
 
@@ -836,7 +836,7 @@ async def mentionalladmin(event):
     sender = await event.get_sender()
     rxyzdev_initT = f"{sender.first_name}"      
     if event.chat_id in rxyzdev_tagTot:
-           a = await event.respond(f"**✅ Etiket işlemi başarıyla durduruldu.**\n\n**Etiketlenen Kişi Sayısı:** {rxyzdev_tagTot[event.chat_id]}")
+           a = await event.respond(f"**✅ Tag prosesi uğurla dayandırıldı.**\n\n**Tag olunan Kişi Sayısı:** {rxyzdev_tagTot[event.chat_id]}")
            await sleep(10)
            await a.delete()
        
