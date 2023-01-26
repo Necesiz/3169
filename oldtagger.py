@@ -20,11 +20,11 @@ from telethon.sessions import StringSession
 from telethon.tl.types import ChannelParticipantsAdmins
 from asyncio import sleep 
 # Pyrogram----------------------------------------------------------------------------------------------------
+from pyrogram import Client, filters
 import datetime
 import motor.motor_asyncio
 from motor.motor_asyncio import AsyncIOMotorClient as MongoClient
 import asyncio
-import time
 import datetime
 import shutil, psutil, traceback, os
 import random
