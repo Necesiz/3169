@@ -707,7 +707,7 @@ async def handler(event):
 # rehim / abasof
 @rehim.on(events.callbackquery.CallbackQuery(data="thelp"))
 async def handler(event): 
-    await event.edit(f"**[@OldMultiBot](http://t.me/OldMultiBot)-un '📮TAG ƏMRLƏR' bölməsi ⤵**\n\n\n•━━━━━━━━•••━━━━━━━━•\n**🤖➪ /admin - Group adminlərin tag edir**\n•━━━━━━━━•••━━━━━━━━•", buttons=(
+    await event.edit(f"**[@OldMultiBot](http://t.me/OldMultiBot)-un '📮TAG ƏMRLƏR' bölməsi ⤵**\n\n\n•━━━━━━━━•••━━━━━━━━•\n**🤖➪ /admin - Group adminlərin tag edir**\n**🤖 ➪ /btag - Bayraqla tag edin**\n**🤖 ➪ /futbol - Futbolçu adları ile tag eder**\n***🤖 ➪ /tag - 6 lı tag edər\n•━━━━━━━━•••━━━━━━━━•", buttons=(
               # [Button.url('➕ Məni Qrupa əlavə et ➕','http://t.me/UstaTagbot?startgroup=a')],
          #[Button.url('🎉 Sahib', 'https://t.me/Nehmedov')],
                [Button.url('🔮 Kanalım','https://t.me/TEAMABASOFcom'),
@@ -1112,6 +1112,96 @@ async def mentionall(event):
            a = await event.respond(f"**✅ Tag prosesi uğurla dayandırıldı.**\n\n**Tag olunan Kişi Sayısı:** {rxyzdev_tagTot[event.chat_id]}")
            await sleep(10)
            await a.delete()
+
+
+
+@rehim.on(events.NewMessage(pattern="^/cancel$"))
+async def cancel_spam(event):
+  if not event.chat_id in anlik_calisan:
+    return
+  else:
+    try:
+      anlik_calisan.remove(event.chat_id)
+    except:
+      pass
+    return await event.respond(f"**✅ Tag prosesi uğurla dayandırıldı.**\n\n**Tag olunan Kişi Sayısı:** {rxyzdev_tagTot[event.chat_id]}")
+
+
+@rehim.on(events.NewMessage(pattern="^/ttag ?(.*)"))
+async def mentionall(event):
+  global anlik_calisan 
+  rxyzdev_tagTot[event.chat_id] = 0
+  if event.is_private:
+    return await event.respond("Bu əmr sadəcə grup vəya kanallarda isdifadə edilə bilər.")
+  
+  admins = []
+  async for admin in rehim.iter_participants(event.chat_id, filter=ChannelParticipantsAdmins):
+    admins.append(admin.id)
+  if not event.sender_id in admins:
+    return await event.respond("**Bu əmri sadəcə yönəticilər isdifadə edə bilər. ✋**")
+  
+  if event.pattern_match.group(1):
+    mode = "text_on_cmd"
+    msg = event.pattern_match.group(1)
+  elif event.reply_to_msg_id:
+    mode = "text_on_reply"
+    msg = event.reply_to_msg_id
+    if msg == None:
+        return await event.respond("__Köhnə mesajlar üçün Kişilərdən bəhs edənmərəm! (qrouba əlavə etmədən öncə olan mesajlar)__")
+  elif event.pattern_match.group(1) and event.reply_to_msg_id:
+    return await event.respond("Bana bir metin verin.")
+  else:
+    return await event.respond("**Tag etməyə Başlamaq üçün səbəb yazın... ✋\n\n(Məsələn: /ttag Salam necəsən!)**")
+  
+  if mode == "text_on_cmd":
+    anlik_calisan.append(event.chat_id)
+    usrnum = 0
+    usrtxt = ""
+    await event.respond("**✅ Tag prosesi başladı. 🔮**")
+        
+    async for usr in rehim.iter_participants(event.chat_id, aggressive=False):
+      rxyzdev_tagTot[event.chat_id] += 1
+      usrnum += 1
+      usrtxt += f"[{usr.first_name}](tg://user?id={usr.id}) "
+      if event.chat_id not in anlik_calisan:
+        return
+      if usrnum == 1:
+        await rehim.send_message(event.chat_id, f"📢 ~ **{msg}**\n\n{usrtxt}")
+        await asyncio.sleep(2)
+        usrnum = 0
+        usrtxt = ""
+        
+    sender = await event.get_sender()
+    rxyzdev_initT = f"[{sender.first_name}](tg://user?id={sender.id})"      
+    if event.chat_id in rxyzdev_tagTot:
+           a = await event.respond(f"**✅ Tag prosesi uğurla dayandırıldı.**\n\n**Tag olunan Kişi Sayısı:** {rxyzdev_tagTot[event.chat_id]}")
+           await sleep(10)
+           await a.delete()
+
+  if mode == "text_on_reply":
+    anlik_calisan.append(event.chat_id)
+ 
+    usrnum = 0
+    usrtxt = ""
+    async for usr in rehim.iter_participants(event.chat_id, aggressive=False):
+      rxyzdev_tagTot[event.chat_id] += 1
+      usrnum += 1
+      usrtxt += f"[{usr.first_name}](tg://user?id={usr.id})"
+      if event.chat_id not in anlik_calisan:
+        return
+      if usrnum == 1:
+        await rehim.send_message(event.chat_id, usrtxt, reply_to=msg)
+        await asyncio.sleep(2)
+        usrnum = 0
+        usrtxt = ""
+     
+    sender = await event.get_sender()
+    rxyzdev_initT = f"[{sender.first_name}](tg://user?id={sender.id})"      
+    if event.chat_id in rxyzdev_tagTot:
+           a = await event.respond(f"**✅ Tag prosesi uğurla dayandırıldı.**\n\n**Tag olunan Kişi Sayısı:** {rxyzdev_tagTot[event.chat_id]}")
+           await sleep(10)
+           await a.delete()
+
 
 
 
