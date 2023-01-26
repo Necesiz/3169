@@ -648,7 +648,7 @@ rehim = TelegramClient('client', api_id, api_hash).start(bot_token=bot_token)
 @rehim.on(events.NewMessage(pattern="^/start$"))
 async def start(event):
   if event.is_private:
-    async for usr in client.iter_participants(event.chat_id):
+    async for usr in rehim.iter_participants(event.chat_id):
      ad = f"[{usr.first_name}](tg://user?id={usr.id}) "
      await event.reply(f"**👋 Salam {mention} Mən OLD MULTİ BOT bir cox funksyaya malik OLD MULTİ botam\n\n🤔 Botun isdifade qaydasın bilmirsen indi ise '🎛 ƏMRLƏR' bölməsinə daxil olun\n\n✉️ Botu başladıqına dayir Sahibime mesaj yolladım**", buttons=(
                      [Button.inline("🎛 ƏMRLƏR", data="emir")],
@@ -673,7 +673,7 @@ async def start(event):
 
 @rehim.on(events.callbackquery.CallbackQuery(data="start"))
 async def handler(event):
-    async for usr in client.iter_participants(event.chat_id):
+    async for usr in rehim.iter_participants(event.chat_id):
      ad = f"[{usr.first_name}](tg://user?id={usr.id}) "
      await event.edit(f"**👋 Salam {mention} Mən OLD MULTİ BOT bir cox funksyaya malik OLD MULTİ botam\n\n🤔 Botun isdifade qaydasın bilmirsen indi ise '🎛 ƏMRLƏR' bölməsinə daxil olun\n\n✉️ Botu başladıqına dayir Sahibime mesaj yolladım**", buttons=(
                      [Button.inline(f"🎛 ƏMRLƏR", data="emir")],
@@ -689,7 +689,7 @@ async def handler(event):
 
 @rehim.on(events.callbackquery.CallbackQuery(data="emir"))
 async def handler(event):
-    async for usr in client.iter_participants(event.chat_id):
+    async for usr in rehim.iter_participants(event.chat_id):
      ad = f"[{usr.first_name}](tg://user?id={usr.id}) "
      await event.edit(f"**🤩 Siz artıq ƏMRLƏR bölümündesiz\n\n🫡 Hansı əmri isdəsəniz aşağıda Buttonla vuraraq baxa bilersiz\n\n🩶 XOŞ İSDİFADELER @OldMultiBot**", buttons=(
                      [Button.inline("🌟 ADMİN ƏMRLƏR", data="ahelp")],
