@@ -643,7 +643,6 @@ async def delcmdc(bot: Client, message: Message):
 rehim = TelegramClient('client', api_id, api_hash).start(bot_token=bot_token)
 
 anlik_calisan = [] 
-
 tekli_calisan = []
 
 @rehim.on(events.NewMessage(pattern="^/start$"))
@@ -760,6 +759,7 @@ async def handler(event):
                [Button.inline(f"🔙 Geri", data="emir")]
                     ),
                     link_preview=False)
+
 
 
 @client.on(events.NewMessage(pattern='^(?i)/cancel'))
@@ -1913,4 +1913,4 @@ async def tema(app: Client, msg: Message):
 
 print(">> Bot işləyir narahat olmayın. @edalet_22 Məlumat almaq üçün <<")
 app.start()
-rehim.run_until_disconnected()
+client.run_until_disconnected()
