@@ -707,7 +707,7 @@ async def handler(event):
 # rehim / abasof
 @rehim.on(events.callbackquery.CallbackQuery(data="thelp"))
 async def handler(event): 
-    await event.edit(f"**[@OldMultiBot](http://t.me/OldMultiBot)-un '📮TAG ƏMRLƏR' bölməsi ⤵**\n\n\n•━━━━━━━━•••━━━━━━━━•\n**🤖➪ /admin - Group adminlərin tag edir**\n**🤖 ➪ /btag - Bayraqla tag edin**\n**🤖 ➪ /futbol - Futbolçu adları ile tag eder**\n***🤖 ➪ /tag - 6 lı tag edər\n•━━━━━━━━•••━━━━━━━━•", buttons=(
+    await event.edit(f"**[@OldMultiBot](http://t.me/OldMultiBot)-un '📮TAG ƏMRLƏR' bölməsi ⤵**\n\n\n•━━━━━━━━•••━━━━━━━━•\n**🤖➪ /admin - Group adminlərin tag edir**\n**🤖 ➪ /btag - Bayraqla tag edin**\n**🤖 ➪ /futbol - Futbolçu adları ile tag eder**\n***🤖 ➪ /tag - 6 lı tag edər**\n**🤖 ➪ /ttag - Tək - Tək tag edir**\n•━━━━━━━━•••━━━━━━━━•", buttons=(
               # [Button.url('➕ Məni Qrupa əlavə et ➕','http://t.me/UstaTagbot?startgroup=a')],
          #[Button.url('🎉 Sahib', 'https://t.me/Nehmedov')],
                [Button.url('🔮 Kanalım','https://t.me/TEAMABASOFcom'),
