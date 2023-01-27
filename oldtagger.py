@@ -24,6 +24,7 @@ from pyrogram import Client, filters
 import motor.motor_asyncio
 from motor.motor_asyncio import AsyncIOMotorClient as MongoClient
 import asyncio
+import time
 import datetime
 import shutil, psutil, traceback, os
 import random
@@ -71,7 +72,6 @@ from pyrogram import Client, idle, filters
 from io import BytesIO
 from aiohttp import ClientSession
 import random
-from time import time
 from random import choice
 from pyrogram.types import Message
 from pyrogram import idle, filters
