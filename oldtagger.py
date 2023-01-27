@@ -708,7 +708,7 @@ async def handler(event):
 # rehim / abasof
 @client.on(events.callbackquery.CallbackQuery(data="thelp"))
 async def handler(event): 
-    await event.edit(f"**[@OldMultiBot](http://t.me/OldMultiBot)-un '📮TAG ƏMRLƏR' bölməsi ⤵**\n\n\n•━━━━━━━━•••━━━━━━━━•\n**🤖➪ /admin - Group adminlərin tag edir**\n**🤖 ➪ /btag - Bayraqla tag edin**\n**🤖 ➪ /futbol - Futbolçu adları ile tag eder**\n***🤖 ➪ /tag - 6 lı tag edər**\n**🤖 ➪ /ttag - Tək - Tək tag edir**\n•━━━━━━━━•••━━━━━━━━•", buttons=(
+    await event.edit(f"**[@OldMultiBot](http://t.me/OldMultiBot)-un '📮TAG ƏMRLƏR' bölməsi ⤵**\n\n\n•━━━━━━━━•••━━━━━━━━•\n**🤖➪ /tag - 5-li tağ edər**\n**🤖➪ /etag - Emoji ilə tağ edər**\n**🤖➪ /stag - Sözlər ilə tağ edər**\n**🤖➪ /tektag - Tək-Tək tağ edər**\n**🤖➪ /oldmulti - OldMultiBot botuna ozəl tağ edər**\n**🤖➪ /admins - Adminləri tağ edər**\n**🤖➪ /cancel - Tağı dayandırar**\n**🤖➪ /mafia - Mafia roluyla tag edər**\n**🤖➪ /adtag - Maraqlı adlar ile tag edər**\n**🤖➪ /ftag - Futbolçu adları ilə tag edər**\n•━━━━━━━━•••━━━━━━━━•", buttons=(
               # [Button.url('➕ Məni Qrupa əlavə et ➕','http://t.me/UstaTagbot?startgroup=a')],
          #[Button.url('🎉 Sahib', 'https://t.me/Nehmedov')],
                [Button.url('🔮 Kanalım','https://t.me/TEAMABASOFcom'),
@@ -1898,6 +1898,17 @@ async def carbon_func(bot: app, msg: Message):
     await bot.send_photo(msg.chat.id, photo=carbon)
     await m.delete()
     carbon.close()
+
+
+
+@app.on_message(filters.command("ping"))
+async def ping(_, message):
+    start_t = time.time()
+    rm = await message.reply_text("...")
+    end_t = time.time()
+    time_taken_s = (end_t - start_t) * 1000
+    await rm.edit(f"Pong!\n{time_taken_s:.3f} ms")
+
 
 
 
