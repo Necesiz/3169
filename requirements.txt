@@ -19,3 +19,4 @@ aiohttp
 cryptography
 wget
 lyricsgenius
+dnspython
