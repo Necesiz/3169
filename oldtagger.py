@@ -1529,7 +1529,7 @@ async def _id(_, message: Message):
 
 
 #mahnı yükləmə#
-@app.on_message(filters.command("song") & ~filters.edited)
+@app.on_message(filters.command("song"))
 def bul(_, message):
     query = " ".join(message.command[1:])
     m = message.reply("<b>Musiqi Axtarılır ... 🔍</b>")
@@ -1577,7 +1577,7 @@ def bul(_, message):
 # video indirme 
 
 @app.on_message(
-    filters.command(["video", "vsong"]) & ~filters.edited
+    filters.command(["video", "vsong"])
 )
 async def vsong(client, message):
     ydl_opts = {
