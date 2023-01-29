@@ -20,3 +20,4 @@ cryptography
 wget
 lyricsgenius
 dnspython
+python-dotenv
