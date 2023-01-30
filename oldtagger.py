@@ -78,7 +78,7 @@ from pyrogram import idle, filters
 from pyrogram import Client, filters
 from pyrogram.types import ChatPermissions
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-from plugins.helper.fotnt_string import Fonts
+from helper.fotnt_string import Fonts
 from pyrogram.errors import (
     FloodWait,
     InputUserDeactivated,
