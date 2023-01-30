@@ -38,7 +38,7 @@ import os, youtube_dl, requests, time
 from Config import Config
 from youtube_search import YoutubeSearch
 from pyrogram.handlers import MessageHandler
-from pyrogram import Client, filters.edited
+from pyrogram import Client, filters
 import yt_dlp
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, CallbackQuery 
 from yt_dlp import YoutubeDL
