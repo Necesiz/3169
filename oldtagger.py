@@ -38,7 +38,7 @@ import os, youtube_dl, requests, time
 from Config import Config
 from youtube_search import YoutubeSearch
 from pyrogram.handlers import MessageHandler
-from pyrogram import Client, filters
+from pyrogram import Client, filters.edited
 import yt_dlp
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, CallbackQuery 
 from yt_dlp import YoutubeDL
@@ -64,7 +64,7 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 import secrets
 import string 
 import aiohttp
-from pyrogram import filters.
+from pyrogram import filters
 from cryptography.fernet import Fernet
 from AykhanPro.komekci import random_line
 from sorular import D_LİST, C_LİST
