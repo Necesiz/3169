@@ -21,3 +21,4 @@ wget
 lyricsgenius
 dnspython
 python-dotenv
+num2words 
