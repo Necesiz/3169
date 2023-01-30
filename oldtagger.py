@@ -78,10 +78,7 @@ from pyrogram import idle, filters
 from pyrogram import Client, filters
 from pyrogram.types import ChatPermissions
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-from helper.fotnt_string import Fonts
-from helper.admin_check import admin_check
-from helper.extract import extract_time, extract_user
-from pyrogram import Client, filters, enums
+from plugins.helper.fotnt_string import Fonts
 from pyrogram.errors import (
     FloodWait,
     InputUserDeactivated,
@@ -1922,120 +1919,6 @@ async def ping(_, message):
 async def tema(app: Client, msg: Message):
     await msg.reply(random.choice(temalar))
 
-
-@app.on_message(filters.command("ban"))
-async def ban_user(_, message):
-    is_admin = await admin_check(message)
-    if not is_admin:
-        return 
-    user_id, user_first_name = extract_user(message)
-    try:
-        await message.chat.ban_member(user_id=user_id)
-    except Exception as error:
-        await message.reply_text(str(error))                    
-    else:
-        if str(user_id).lower().startswith("@"):
-            await message.reply_text(f"Group Admini..! \n{user_first_name} \nBan etdi.")                              
-        else:
-            await message.reply_text(f"Group Admini..! \n<a href='tg://user?id={user_id}'>{user_first_name}</a> Ban etdi!")                      
-            
-
-@app.on_message(filters.command("mute"))
-async def mute_user(_, message):
-    is_admin = await admin_check(message)
-    if not is_admin:
-        return
-    user_id, user_first_name = extract_user(message)
-    try:
-        await message.chat.restrict_member(
-            user_id=user_id,
-            permissions=ChatPermissions(
-            )
-        )
-    except Exception as error:
-        await message.reply_text(
-            str(error)
-        )
-    else:
-        if str(user_id).lower().startswith("@"):
-            await message.reply_text(
-                "👍🏻 "
-                f"{user_first_name}"
-                " Adlı isdifadəçi groupda səsiz edildi! 🤐"
-            )
-        else:
-            await message.reply_text(
-                "👍🏻 "
-                f"<a href='tg://user?id={user_id}'>"
-                "Adlı isdifadəçi"
-                "</a>"
-                " Groupda səsiz edildi! 🤐"
-            )
-
-
-
-@app.on_message(filters.command("purge") & (filters.group | filters.channel))                   
-async def purge(client, message):
-    if message.chat.type not in ((enums.ChatType.SUPERGROUP, enums.ChatType.CHANNEL)):
-        return
-    is_admin = await admin_check(message)
-    if not is_admin:
-        return
-
-    status_message = await message.reply_text("...", quote=True)
-    await message.delete()
-    message_ids = []
-    count_del_etion_s = 0
-
-    if message.reply_to_message:
-        for a_s_message_id in range(message.reply_to_message.id, message.id):
-            message_ids.append(a_s_message_id)
-            if len(message_ids) == "100":
-                await client.delete_messages(
-                    chat_id=message.chat.id,
-                    message_ids=message_ids,
-                    revoke=True
-                )
-                count_del_etion_s += len(message_ids)
-                message_ids = []
-        if len(message_ids) > 0:
-            await client.delete_messages(
-                chat_id=message.chat.id,
-                message_ids=message_ids,
-                revoke=True
-            )
-            count_del_etion_s += len(message_ids)
-    await status_message.edit_text(f"Mesajları Sildim")
-    await asyncio.sleep(5)
-    await status_message.delete()
-
-
-
-@app.on_message(filters.command(["unban", "unmute"]))
-async def un_ban_user(_, message):
-    is_admin = await admin_check(message)
-    if not is_admin:
-        return
-    user_id, user_first_name = extract_user(message)
-    try:
-        await message.chat.unban_member(user_id=user_id)
-    except Exception as error:
-        await message.reply_text(str(error))
-    else:
-        if str(user_id).lower().startswith("@"):
-            await message.reply_text(
-                "Vəziyət dəyişdi  ... indi "
-                f"{user_first_name} Adlı isdifadəçi "
-                " Yenidən qroupa qoşula bilər!"
-            )
-        else:
-            await message.reply_text(
-                "Vəziyət dəyişdi  ... indi "
-                f"<a href='tg://user?id={user_id}'>"
-                f"{user_first_name}"
-                "</a> Adlı isdifadəçi "
-                " Yenidən qroupa qoşula bilər!"
-            )
 
 
 @app.on_message(filters.private & filters.command(["font"]))
