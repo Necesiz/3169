@@ -75,7 +75,7 @@ import random
 from random import choice
 from pyrogram.types import Message
 from pyrogram import idle, filters
-from pyrogram import Client, filters.edited
+from pyrogram import Client, filters
 from pyrogram.types import ChatPermissions
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from helper.fotnt_string import Fonts
