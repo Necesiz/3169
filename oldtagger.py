@@ -1767,7 +1767,7 @@ async def alive(_, message):
     )
 
 
-@app.on_message(filters.command("sehid") & ~filters.edited)
+@app.on_message(filters.command("sehid"))
 async def commit(_, message):
     await message.reply_text((await random_line('AykhanPro/txt/sehid.txt')))
 				
@@ -1776,7 +1776,7 @@ async def meslehet(_, message):
     await message.reply_text((await random_line('AykhanPro/txt/meslehet.txt')))
 
 
-@app.on_message(filters.command("anekdod") & ~filters.edited)
+@app.on_message(filters.command("anekdod"))
 async def anekdod(_, message):
     await message.reply_text((await random_line('AykhanPro/txt/anekdod.txt')))
 
