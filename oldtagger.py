@@ -940,7 +940,7 @@ async def ping(_, message):
     await rm.edit(f"Pong!\n{time_taken_s:.3f} ms")
 
 
-@client.on(events.NewMessage(pattern="^/telegraph$"))
+@client.on(events.NewMessage("telegraph"))
 async def telegraph(event):
         if event.reply_to_msg_id:
             reply_message = await event.get_reply_message()
