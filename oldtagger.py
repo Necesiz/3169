@@ -1389,6 +1389,31 @@ async def pasty(client, message):
     pasted = f"**Uğurla Pasty yapışdırlıdı**\n\n**Link:** • [Click here]({p_link})\n\n**Raw Link:** • [Click here]({p_raw})"
     await pablo.edit(pasted, disable_web_page_preview=True)
 
+HERF = (
+    "A ❤️",
+    "B 🩶",
+    "C ❤️‍🔥",
+    "D 💜",
+    "R 💚",
+    "S 💛",
+    "F 🤎",
+    "D 🖤",
+    "G 🩷",
+    "H 🩶",
+    "K 🩵",
+    "V 💘",
+    "E 💟",
+)
+
+
+@Client.on_message(filters.command("sevgi"))
+async def runs(_, message):
+    """ /runs strings """
+    effective_string = random.choice(HERF)
+    if message.reply_to_message:
+        await message.reply_to_message.reply_text(effective_string)
+    else:
+        await message.reply_text(effective_string)
 
 
 
