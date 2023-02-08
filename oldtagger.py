@@ -908,12 +908,27 @@ async def roll_bowling(bot, message):
 
  
 
-#telethon xos geldin mesaj 
-@client.on(events.ChatAction) 
-async def handler(event): # Welcome every new user 
-    if event.user_joined: 
-       await event.reply('Salam xos geldiniz groupa!')
+#telethon xos geldin mesaj @edalet_22 terifindən hazırlandı
+@client.on(events.ChatAction)
+async def handler(event):
+    if event.user_joined:
+        await event.reply(random.choice(userjoin))
 
+
+@client.on(events.ChatAction)
+async def handler(event):
+    if event.user_left:
+        await event.reply("Əla Birdə gəlmə")
+
+userjoin = (
+
+    "XOŞ GƏLDİN ARAMIZA",
+    "Xoş gəldin xoş söhbətlər arzu edirəm",
+    "Xoş gəldin necəsən",
+    "Xoş gəldin groupa",
+    "Xoş gəldin əzizim",
+    "",
+)
 
 
 @app.on_message(filters.command("ping"))
@@ -925,55 +940,20 @@ async def ping(_, message):
     await rm.edit(f"Pong!\n{time_taken_s:.3f} ms")
 
 
+@client.on(events.NewMessage(pattern="^/telegraph$"))
+async def telegraph(event):
+        if event.reply_to_msg_id:
+            reply_message = await event.get_reply_message()
+            if reply_message.media:
+                downloaded_file_name = await edalet.download_media(reply_message)
+                response = post("https://telegra.ph/upload", files={"file": ("file.png", open(downloaded_file_name, "rb"))})
+                remove(downloaded_file_name)
+                await edalet.send_message(event.chat_id, f"**Link:** https://telegra.ph{response.json()[0]['src']}", reply_to=event.reply_to_msg_id)
+            else:
+                await client.send_message(event.chat_id, "Bir şəkilə cavab verin", reply_to=event.reply_to_msg_id)
+        else:
+            await client.send_message(event.chat_id, "Bir şəkilə cavab verin", reply_to=event.reply_to_msg_id)
 
-@app.on_message(filters.private & filters.photo)
-async def uploadphoto(client, message):
-  msg = await message.reply_text("`Tʀʏɪɴɢ Tᴏ Dᴏᴡɴʟᴏᴀᴅ`")
-  userid = str(message.chat.id)
-  img_path = (f"./DOWNLOADS/{userid}.jpg")
-  img_path = await client.download_media(message=message, file_name=img_path)
-  await msg.edit_text("`Tʀʏɪɴɢ Tᴏ Uᴘʟᴏᴀᴅ.....`")
-  try:
-    tlink = upload_file(img_path)
-  except:
-    await msg.edit_text("`Something went wrong`") 
-  else:
-    await msg.edit_text(f"https://telegra.ph{tlink[0]}")     
-    os.remove(img_path) 
-
-@app.on_message(filters.private & filters.photo)
-async def uploadgif(client, message):
-  if(message.animation.file_size < 5242880):
-    msg = await message.reply_text("`Tʀʏɪɴɢ Tᴏ Dᴏᴡɴʟᴏᴀᴅ`")
-    userid = str(message.chat.id)
-    gif_path = (f"./DOWNLOADS/{userid}.mp4")
-    gif_path = await client.download_media(message=message, file_name=gif_path)
-    await msg.edit_text("`Tʀʏɪɴɢ Tᴏ Uᴘʟᴏᴀᴅ.....`")
-    try:
-      tlink = upload_file(gif_path)
-      await msg.edit_text(f"https://telegra.ph{tlink[0]}")   
-      os.remove(gif_path)   
-    except:
-      await msg.edit_text("Something really Happend Wrong...") 
-  else:
-    await message.reply_text("Size Should Be Less Than 5 mb")
-
-@app.on_message(filters.private & filters.photo)
-async def uploadvid(client, message):
-  if(message.video.file_size < 5242880):
-    msg = await message.reply_text("`Tʀʏɪɴɢ Tᴏ Dᴏᴡɴʟᴏᴀᴅ`")
-    userid = str(message.chat.id)
-    vid_path = (f"./DOWNLOADS/{userid}.mp4")
-    vid_path = await client.download_media(message=message, file_name=vid_path)
-    await msg.edit_text("`Tʀʏɪɴɢ Tᴏ Uᴘʟᴏᴀᴅ.....`")
-    try:
-      tlink = upload_file(vid_path)
-      await msg.edit_text(f"https://telegra.ph{tlink[0]}")     
-      os.remove(vid_path)   
-    except:
-      await msg.edit_text("Something really Happend Wrong...") 
-  else:
-    await message.reply_text("Size Should Be Less Than 5 mb")
 
 
 
