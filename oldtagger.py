@@ -13,7 +13,6 @@ from telethon import events
 from telethon import __version__ as s
 import asyncio
 import os
-from time import time
 from Config import Config 
 import os, logging, asyncio
 from telethon import events, Button
