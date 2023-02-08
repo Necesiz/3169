@@ -2,7 +2,7 @@
 telethon
 cryptg
 requests
-pyrogram==2.0.35
+pyrogram==1.4.16
 tgcrypto
 pymongo[srv]
 aiofiles
