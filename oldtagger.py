@@ -30,6 +30,7 @@ import shutil, psutil, traceback, os
 import random
 import string
 import traceback
+import json
 import aiofiles
 from pyrogram import Client, filters, __version__
 from pyrogram.types import Message
