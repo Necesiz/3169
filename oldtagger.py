@@ -83,12 +83,7 @@ from pyrogram.types import ChatPermissions
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from helper.fotnt_string import Fonts
 import asyncio
-from pyrogram import filters
-from aiohttp import ClientSession
-from pyrogram import Client as app
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from asyncio import gather
-from datetime import datetime, timedelta
 from io import BytesIO
 from math import atan2, cos, radians, sin, sqrt
 from os import execvp
@@ -96,7 +91,6 @@ from random import randint
 from re import findall
 from re import sub as re_sub
 from sys import executable
-import aiofiles
 import speedtest
 from PIL import Image
 from pyrogram.types import Message
