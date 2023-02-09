@@ -1390,25 +1390,14 @@ async def runs(_, message):
         await message.reply_text(effective_string)
 
 
-MAL = (
-   f"Sən {message.from_user.mention} 100% malsan",
-   "Sən {message.from_user.mention} 10% malsan",
-   "Sən {message.from_user.mention} 5% malsan",
-   "Sən {message.from_user.mention} 1% malsan",
-   "Sən {message.from_user.mention} 89% malsan",
-   "Sən {message.from_user.mention} 31% malsan",
-   "Sən {message.from_user.mention} 69% malsan",
-   "Sən {message.from_user.mention} 50% malsan",
-   "Sən {message.from_user.mention} 72% malsan",
-   "Sən {message.from_user.mention} 48% malsan",
-)
+
 
 
 
 @app.on_message(filters.command("mal"))
 async def runs(_, message):
     """ /runs strings """
-    effective_string = random.choice(MAL)
+    effective_string = f"sən {random.randint(0,101)}"
     if message.reply_to_message:
         await message.reply_to_message.reply_text(effective_string)
     else:
