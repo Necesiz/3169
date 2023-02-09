@@ -1391,16 +1391,16 @@ async def runs(_, message):
 
 
 MAL = (
-   "Sən 100% malsan",
-   "Sən 10% malsan",
-   "Sən 5% malsan",
-   "Sən 1% malsan",
-   "Sən 89% malsan",
-   "Sən 31% malsan",
-   "Sən 69% malsan",
-   "Sən 50% malsan",
-   "Sən 72% malsan",
-   "Sən 48% malsan",
+   f"Sən {message.from_user.mention} 100% malsan",
+   "Sən {message.from_user.mention} 10% malsan",
+   "Sən {message.from_user.mention} 5% malsan",
+   "Sən {message.from_user.mention} 1% malsan",
+   "Sən {message.from_user.mention} 89% malsan",
+   "Sən {message.from_user.mention} 31% malsan",
+   "Sən {message.from_user.mention} 69% malsan",
+   "Sən {message.from_user.mention} 50% malsan",
+   "Sən {message.from_user.mention} 72% malsan",
+   "Sən {message.from_user.mention} 48% malsan",
 )
 
 
@@ -1430,25 +1430,70 @@ async def make_carbon(code):
 async def carbon_func(_, message):
     if not message.reply_to_message:
         return await message.reply_text(
-            "Carbon etmək üçün mətinə yanıt olaraq ver."
+            "ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴛᴇxᴛ ᴍᴇssᴀɢᴇ ᴛᴏ ᴍᴀᴋᴇ ᴄᴀʀʙᴏɴ."
         )
     if not message.reply_to_message.text:
         return await message.reply_text(
-            "Carbon etmək üçün mətinə yanıt olaraq ver."
+            "ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴛᴇxᴛ ᴍᴇssᴀɢᴇ ᴛᴏ ᴍᴀᴋᴇ ᴄᴀʀʙᴏɴ."
         )
     user_id = message.from_user.id
-    m = await message.reply_text("Emal edilir...")
+    m = await message.reply_text("ᴘʀᴏᴄᴇssɪɴɢ...")
     carbon = await make_carbon(message.reply_to_message.text)
-    await m.edit("Yüklənir..")
+    await m.edit("ᴜᴘʟᴏᴀᴅɪɴɢ..")
     await message.reply_photo(
         photo=carbon,
-        caption=f"**@OldmultiBot tərəfindən : {message.from_user.mention} üçün hazırlandı**",
-        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("SUPPORT", url="https://t.me/TEAMABASOFcom")]]),                   
+        caption="**Made by @mkn_bots_updates**",
+        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("𝚂𝚄𝙿𝙿𝙾𝚁𝚃 𝚄𝚂", url="https://t.me/mkn_bots_updates")]]),                   
     )
     await m.delete()
     carbon.close()
 
 
+@app.on_message(filters.command("telegraph"))
+async def telegraph(c: app, m: Message):
+    replied = m.reply_to_message
+    start_t = datetime.now()
+    await m.edit_text("`Trying to paste to telegraph...`", parse_mode="md")
+    if not replied:
+        await m.edit_text("reply to a supported media file")
+        return
+    if not (
+        (replied.photo and replied.photo.file_size <= 5242880)
+        or (replied.animation and replied.animation.file_size <= 5242880)
+        or (
+            replied.video
+            and replied.video.file_name.endswith(".mp4")
+            and replied.video.file_size <= 5242880
+        )
+        or (
+            replied.document
+            and replied.document.file_name.endswith(
+                (".jpg", ".jpeg", ".png", ".gif", ".mp4")
+            )
+            and replied.document.file_size <= 5242880
+        )
+    ):
+        await m.edit_text("**Not supported!**", parse_mode="md")
+        return
+    download_location = await c.download_media(
+        message=m.reply_to_message, file_name="telepyrobot/downloads/"
+    )
+    await m.edit_text("`Pasting to telegraph...`", parse_mode="md")
+    try:
+        response = upload_file(download_location)
+    except Exception as document:
+        await m.edit_text(document)
+    else:
+        end_t = datetime.now()
+        ms = (end_t - start_t).seconds
+        await m.edit_text(
+            f"**Document Passed to** [Telegra.ph](https://telegra.ph{response[0]}) **in __{ms}__ seconds**",
+            parse_mode="md",
+            disable_web_page_preview=True,
+        )
+    finally:
+        os.remove(download_location)
+    return
 
 
 #@(events.NewMessage(pattern='/reklam'))
