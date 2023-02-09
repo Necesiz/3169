@@ -1421,8 +1421,16 @@ async def runs(_, message):
 
 
 MAL = (
-   "f SƏN 100% MALSAN",
-   "f SƏN 100% MALSAN",
+   "Sən 100% malsan",
+   "Sən 10% malsan",
+   "Sən 5% malsan",
+   "Sən 1% malsan",
+   "Sən 89% malsan",
+   "Sən 31% malsan",
+   "Sən 69% malsan",
+   "Sən 50% malsan",
+   "Sən 72% malsan",
+   "Sən 48% malsan",
 )
 
 
