@@ -1421,8 +1421,8 @@ async def runs(_, message):
 
 
 MAL = (
-    "{message.from_user.mention} SƏN 100% MALSAN",
-    "{message.from_user.mention} SƏN 10% MALSAN",
+    "{mention} SƏN 100% MALSAN",
+    "{mention} SƏN 10% MALSAN",
 )
 
 
