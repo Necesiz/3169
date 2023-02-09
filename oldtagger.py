@@ -1407,7 +1407,7 @@ async def runs(_, message):
 @app.on_message(filters.command("eşq"))
 async def runs(_, message):
     """ /runs strings """
-    effective_string = f"**1 {message.from_user.mention}**\n\n**2 {message.reply_to_message.from_user.mention}**\n\n**Sevgi faizi  {random.randint(0,101)}%**"
+    effective_string = f"**Sevgi Testi 💘**\n\n**❤️ {message.from_user.mention}**\n\n**💟 {message.reply_to_message.from_user.mention}**\n\n**Sevgi faizi  {random.randint(0,101)}%**"
     if message.reply_to_message:
         await message.reply_to_message.reply_text(effective_string)
     else:
