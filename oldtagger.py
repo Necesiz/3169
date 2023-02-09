@@ -94,6 +94,7 @@ from sys import executable
 import speedtest
 from PIL import Image
 from pyrogram.types import Message
+from telegraph import upload_file
 from pyrogram.errors import (
     FloodWait,
     InputUserDeactivated,
@@ -1463,6 +1464,51 @@ async def carbon_func(_, message):
     carbon.close()
 
 
+@app.on_message(filters.command("telegraph"))
+async def telegraph(c: app, m: Message):
+    replied = m.reply_to_message
+    start_t = datetime.now()
+    await m.edit_text("`Trying to paste to telegraph...`", parse_mode="md")
+    if not replied:
+        await m.edit_text("reply to a supported media file")
+        return
+    if not (
+        (replied.photo and replied.photo.file_size <= 5242880)
+        or (replied.animation and replied.animation.file_size <= 5242880)
+        or (
+            replied.video
+            and replied.video.file_name.endswith(".mp4")
+            and replied.video.file_size <= 5242880
+        )
+        or (
+            replied.document
+            and replied.document.file_name.endswith(
+                (".jpg", ".jpeg", ".png", ".gif", ".mp4")
+            )
+            and replied.document.file_size <= 5242880
+        )
+    ):
+        await m.edit_text("**Not supported!**", parse_mode="md")
+        return
+    download_location = await c.download_media(
+        message=m.reply_to_message, file_name="telepyrobot/downloads/"
+    )
+    await m.edit_text("`Pasting to telegraph...`", parse_mode="md")
+    try:
+        response = upload_file(download_location)
+    except Exception as document:
+        await m.edit_text(document)
+    else:
+        end_t = datetime.now()
+        ms = (end_t - start_t).seconds
+        await m.edit_text(
+            f"**Document Passed to** [Telegra.ph](https://telegra.ph{response[0]}) **in __{ms}__ seconds**",
+            parse_mode="md",
+            disable_web_page_preview=True,
+        )
+    finally:
+        os.remove(download_location)
+    return
 
 
 #@(events.NewMessage(pattern='/reklam'))
