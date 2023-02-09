@@ -1450,7 +1450,30 @@ async def speedtest_function(message):
     await client.send_file(message.chat.id, result["share"], caption=output)
     await m.delete()
 
+  
+@app.on_message(filters.command("ship") & filters.group)
+async def my_handler(client, message):
+    # ayuyes
+    chat_id = message.chat.id
+    USERLER = []
+    members = app.get_chat_members(chat_id) # qrupdaki userlerin listesi
+    async for m in members:
+        botmu = m.user.is_bot # bot olub olmadigini yoxlayir
+        if botmu == True:
+            pass
+        else:
+            USERLER.append(m.user.mention)
+    def secUser():
+        user1 = random.choice(USERLER)
+        user2 = random.choice(USERLER)
 
+    user1 = random.choice(USERLER) # random user secir
+    user2 = random.choice(USERLER) # random user secir
+
+    if user1 == user2:
+        secUser()
+    elif user2 != user1:
+        await client.send_message(chat_id, f"{user1} + {user2} = {random.randint(0,101)}%") # secilen userleri gonderir
 
 
 #@(events.NewMessage(pattern='/reklam'))
