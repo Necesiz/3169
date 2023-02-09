@@ -1397,7 +1397,7 @@ async def runs(_, message):
 @app.on_message(filters.command("mal"))
 async def runs(_, message):
     """ /runs strings """
-    effective_string = f"{message.reply_to_message.user.mention} sən {random.randint(0,101)}"% Malsan"
+    effective_string = f"{message.reply_to_message.user.mention} sən {random.randint(0,101)}% Malsan"
     if message.reply_to_message:
         await message.reply_to_message.reply_text(effective_string)
     else:
