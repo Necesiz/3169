@@ -1365,17 +1365,6 @@ async def pasty(client, message):
 
 
 
-@app.on_message(filters.command("tüpür"))
-async def runs(_, message):
-    """ /runs strings """
-    effective_string = f"**Kimsə üzü bulandı 🤮**\n\n**{message.from_user.mention}🤢 {message.reply_to_message.from_user.mention} ın Üzünə tüpürdü**"
-    if message.reply_to_message:
-        await message.reply_to_message.reply_text(effective_string)
-    else:
-        await message.reply_text(effective_string)
-
-
-
 @app.on_message(filters.command("mal"))
 async def runs(_, message):
     """ /runs strings """
@@ -1424,7 +1413,7 @@ async def carbon_func(_, message):
     await m.edit("Yükləndi..")
     await message.reply_photo(
         photo=carbon,
-        caption="**Carbon uğurla hazırlandı✅️**\n\n**@OldMultiBot ilə {message.from_user.mention} tərəfindən Carbon hazırlandı**",
+        caption=f"**Carbon uğurla hazırlandı✅️**\n\n**@OldMultiBot ilə {message.from_user.mention} tərəfindən Carbon hazırlandı**",
         reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("𝚂𝚄𝙿𝙿𝙾𝚁𝚃", url="https://t.me/TEAMABASOFcom")]]),                   
     )
     await m.delete()
