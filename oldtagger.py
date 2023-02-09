@@ -665,7 +665,7 @@ async def start(event):
                [Button.url('➕ Qrupa Əlavə Et ➕','http://t.me/OldMultiBot?startgroup=a'),
                 Button.url('🎴 KANALIM','http://t.me/TEAMABASOFcom')],
                [Button.url("🌟 SAHİB",'https://t.me/AnonyumAz'),
-                      Button.url('📂 APK','http://t.me/texnoapk1')],
+                      Button.url('🎶 PLAY LİST','https://t.me/oldmultisong')],
                     ),
                     link_preview=False)
 
@@ -690,7 +690,7 @@ async def handler(event):
                [Button.url('➕ Qrupa Əlavə Et ➕','http://t.me/OldMultiBot?startgroup=a'),
                 Button.url('🎴 KANALIM','http://t.me/TEAMABASOFcom')],
                [Button.url('🌟 SAHİB','https://t.me/AnonyumAz'),
-                      Button.url('📂 APK', 'https://t.me/texnoapk1')],
+                      Button.url('🎶 PLAY LİST', 'https://t.me/oldmultisong')],
                     ),
                     link_preview=False)
 
@@ -705,7 +705,7 @@ async def handler(event):
                       #Button.url('🤖 USTA Bots', 'https://t.me/ustabots')],
                [Button.inline(f"🪬 SAHİB ƏMRLƏRİ", data="thelp"),
                 Button.inline(f"📥 YÜKLƏMƏ", data="yhelp")],
-               [Button.inline(f"🕹 GAME", data="dhelp"),
+               [Button.inline(f"🕹 ƏYLƏNCƏ", data="dhelp"),
                       Button.inline(f"➕️ ƏLAVƏLƏR", data="elave")],
 	       [Button.inline(f"🔙 Geri", data="start")]
                     ),
@@ -725,7 +725,7 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="yhelp"))
 async def handler(event): 
-    await event.edit(f"**[@OldMultiBot](http://t.me/OldMultiBot)-un '📥 YÜKLƏMƏ' bölməsi ⤵**\n\n\n•━━━━━━━━•••━━━━━━━━•\n**🎵 ➪  /song - MAHNI YÜKLƏYİR**\n**📽 ➪ /video və ya /vsong - İsdədiyiniz videonu Youtub dan yükləyər\n**⛓️ ➪ Telegrap - Bota şexside photo,video,gif ataraq telegrap linki ala bilersiz Əmir şəxsidə çalışır**\n•━━━━━━━━•••━━━━━━━━•", buttons=(
+    await event.edit(f"**[@OldMultiBot](http://t.me/OldMultiBot)-un '📥 YÜKLƏMƏ' bölməsi ⤵**\n\n\n•━━━━━━━━•••━━━━━━━━•\n**🎵 ➪  /song - MAHNI YÜKLƏYİR**\n**📽 ➪ /video və ya /vsong - İsdədiyiniz videonu Youtub dan yükləyər\n**📜 ➪ /paste - mətini pastebin edin**\n•━━━━━━━━•••━━━━━━━━•", buttons=(
               # [Button.url('➕ Məni Qrupa əlavə et ➕','http://t.me/UstaTagbot?startgroup=a')],
          #[Button.url('🎉 Sahib', 'https://t.me/Nehmedov')],
                [Button.url('🔮 Kanalım','https://t.me/TEAMABASOFcom'),
@@ -736,11 +736,11 @@ async def handler(event):
 
 @client.on(events.callbackquery.CallbackQuery(data="dhelp"))
 async def handler(event): 
-    await event.edit(f"**[@OldMultiBot](http://t.me/OldMultiBot)-un '🕹 GAME' bölməsi ⤵**\n\n\n•━━━━━━━━•••━━━━━━━━•\n**☸️ ➪ /dc - Doğruluq Və Cəsarət oyunu basladır**\n**🎲 ➪ /zer - Zər atar**\n**🎯 ➪ /ox - Ox atar**\n**⚽️ ➪ /gol - Goal atar**\n**🎰 ➪ /spin - Spin cevir**\n**🏀 ➪ /basket - Basket atar**\n**🎳 ➪ /bowling - Bowling atar**\n•━━━━━━━━•••━━━━━━━━•", buttons=(
+    await event.edit(f"**[@OldMultiBot](http://t.me/OldMultiBot)-un '🕹 ƏYLƏNCƏ' bölməsi ⤵**\n\n\n•━━━━━━━━•••━━━━━━━━•\n**☸️ ➪ /dc - Doğruluq Və Cəsarət oyunu basladır**\n**🎲 ➪ /zer - Zər atar**\n**🎯 ➪ /ox - Ox atar**\n**⚽️ ➪ /gol - Goal atar**\n**🎰 ➪ /spin - Spin cevir**\n**🏀 ➪ /basket - Basket atar**\n**🎳 ➪ /bowling - Bowling atar**\n\n**❤️‍🔥 ➪ /sevgi - sevdiyiniz insanın adininin baş hərfini göstərir**\n•━━━━━━━━•••━━━━━━━━•", buttons=(
               # [Button.url('➕ Məni Qrupa əlavə et ➕','http://t.me/UstaTagbot?startgroup=a')],
          #[Button.url('🎉 Sahib', 'https://t.me/Nehmedov')],
                [Button.url('🔮 Kanalım','https://t.me/TEAMABASOFcom'),
-                      Button.url('📂 APK','https://t.me/texnoapk1')],
+                      Button.url('🎶 PLAY LİST','https://t.me/oldmultisong')],
                [Button.inline(f"🔙 Geri", data="emir")]
                     ),
                     link_preview=False)
@@ -751,7 +751,7 @@ async def handler(event):
               # [Button.url('➕ Məni Qrupa əlavə et ➕','http://t.me/UstaTagbot?startgroup=a')],
          #[Button.url('🎉 Sahib', 'https://t.me/Nehmedov')],
                [Button.url('🔮 Kanalım','https://t.me/TEAMABASOFcom'),
-                      Button.url('📂 APK','https://t.me/texnoapk1')],
+                      Button.url('🎶 PLAY LİST','https://t.me/oldmultisong')],
                [Button.inline(f"🔙 Geri", data="emir")]
                     ),
                     link_preview=False)
@@ -762,7 +762,7 @@ async def handler(event):
               # [Button.url('➕ Məni Qrupa əlavə et ➕','http://t.me/UstaTagbot?startgroup=a')],
          #[Button.url('🎉 Sahib', 'https://t.me/Nehmedov')],
                [Button.url('🔮 Kanalım','https://t.me/TEAMABASOFcom'),
-                      Button.url('📂 APK','https://t.me/texnoapk1')],
+                      Button.url('🎶 PLAY LİST','https://t.me/oldmultisong')],
                [Button.inline(f"🔙 Geri", data="emir")]
                     ),
                     link_preview=False)
@@ -1430,25 +1430,6 @@ def testspeed(m):
         return
     return result
 
-@client.on(events.NewMessage(pattern="^/speedtest"))
-async def speedtest_function(message):
-    m = await message.reply("Running Speed test")
-    loop = asyncio.get_event_loop()
-    result = await loop.run_in_executor(None, testspeed, m)
-    output = f"""**Speedtest Results**
-    
-**Client:**
-**__ISP:__** {result['client']['isp']}
-**__Country:__** {result['client']['country']}
-  
-**Server:**
-**__Name:__** {result['server']['name']}
-**__Country:__** {result['server']['country']}, {result['server']['cc']}
-**__Sponsor:__** {result['server']['sponsor']}
-**__Latency:__** {result['server']['latency']}  
-**__Ping:__** {result['ping']}"""
-    await client.send_file(message.chat.id, result["share"], caption=output)
-    await m.delete()
 
   
 
