@@ -1363,48 +1363,30 @@ async def pasty(client, message):
     pasted = f"**Uğurla Pasty yapışdırlıdı**\n\n**Link:** • [Click here]({p_link})\n\n**Raw Link:** • [Click here]({p_raw})"
     await pablo.edit(pasted, disable_web_page_preview=True)
 
-HERF = (
-    "A ❤️",
-    "B 🩶",
-    "C ❤️‍🔥",
-    "D 💜",
-    "R 💚",
-    "S 💛",
-    "F 🤎",
-    "D 🖤",
-    "G 🩷",
-    "H 🩶",
-    "K 🩵",
-    "V 💘",
-    "E 💟",
-)
 
 
-@app.on_message(filters.command("sevgi"))
+@app.on_message(filters.command("tüpür"))
 async def runs(_, message):
     """ /runs strings """
-    effective_string = random.choice(HERF)
+    effective_string = f"**Kimsə üzü bulandı 🤮**\n\n**{message.from_user.mention}🤢 {message.reply_to_message.from_user.mention} ın Üzünə tüpürdü**"
     if message.reply_to_message:
         await message.reply_to_message.reply_text(effective_string)
     else:
         await message.reply_text(effective_string)
-
-
-
 
 
 
 @app.on_message(filters.command("mal"))
 async def runs(_, message):
     """ /runs strings """
-    effective_string = f"{message.reply_to_message.from_user.mention} sən {random.randint(0,101)}% Malsan"
+    effective_string = f"**🐄 Mal testi edildi**\n\n**{message.reply_to_message.from_user.mention} sən {random.randint(0,101)}% Malsan**"
     if message.reply_to_message:
         await message.reply_to_message.reply_text(effective_string)
     else:
         await message.reply_text(effective_string)
 
 
-@app.on_message(filters.command("eşq"))
+@app.on_message(filters.command("sevgi"))
 async def runs(_, message):
     """ /runs strings """
     effective_string = f"**Sevgi Testi 💘**\n\n**❤️ {message.from_user.mention}**\n\n**💟 {message.reply_to_message.from_user.mention}**\n\n**Sevgi faizi  {random.randint(0,101)}%**"
@@ -1430,20 +1412,20 @@ async def make_carbon(code):
 async def carbon_func(_, message):
     if not message.reply_to_message:
         return await message.reply_text(
-            "ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴛᴇxᴛ ᴍᴇssᴀɢᴇ ᴛᴏ ᴍᴀᴋᴇ ᴄᴀʀʙᴏɴ."
+            "Mesaja yanıt verərək carbon yazın."
         )
     if not message.reply_to_message.text:
         return await message.reply_text(
-            "ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴛᴇxᴛ ᴍᴇssᴀɢᴇ ᴛᴏ ᴍᴀᴋᴇ ᴄᴀʀʙᴏɴ."
+            "Mesaja yanıt verərək carbon yazın."
         )
     user_id = message.from_user.id
-    m = await message.reply_text("ᴘʀᴏᴄᴇssɪɴɢ...")
+    m = await message.reply_text("Emal edilir...")
     carbon = await make_carbon(message.reply_to_message.text)
-    await m.edit("ᴜᴘʟᴏᴀᴅɪɴɢ..")
+    await m.edit("Yükləndi..")
     await message.reply_photo(
         photo=carbon,
-        caption="**Made by @mkn_bots_updates**",
-        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("𝚂𝚄𝙿𝙿𝙾𝚁𝚃 𝚄𝚂", url="https://t.me/mkn_bots_updates")]]),                   
+        caption="**Carbon uğurla hazırlandı✅️**\n\n**@OldMultiBot ilə {message.from_user.mention} tərəfindən Carbon hazırlandı**",
+        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("𝚂𝚄𝙿𝙿𝙾𝚁𝚃", url="https://t.me/TEAMABASOFcom")]]),                   
     )
     await m.delete()
     carbon.close()
