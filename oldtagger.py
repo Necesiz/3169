@@ -1404,6 +1404,17 @@ async def runs(_, message):
         await message.reply_text(effective_string)
 
 
+@app.on_message(filters.command("eşq"))
+async def runs(_, message):
+    """ /runs strings """
+    effective_string = f"{message.from_user.mention} 💞 {message.reply_to_message.from_user.mention} arasında sevgi  {random.randint(0,101)}% di"
+    if message.reply_to_message:
+        await message.reply_to_message.reply_text(effective_string)
+    else:
+        await message.reply_text(effective_string)
+
+
+
 
 aiohttpsession = ClientSession()
 
