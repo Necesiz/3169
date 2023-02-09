@@ -82,6 +82,16 @@ from pyrogram import Client, filters
 from pyrogram.types import ChatPermissions
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from helper.fotnt_string import Fonts
+import asyncio
+import random
+
+import requests
+from pyrogram import *
+from pyrogram import Client, filters
+from pyrogram.errors.exceptions.flood_420 import FloodWait
+from pyrogram.types import *
+from pyrogram.types import Message
+from helper.basic import edit_or_reply, get_text
 from pyrogram.errors import (
     FloodWait,
     InputUserDeactivated,
@@ -1431,7 +1441,25 @@ def testspeed(m):
     return result
 
 
-  
+  @Client.on_message(
+    filters.command(["re"])
+)
+async def hello_world(client: Client, message: Message):
+    mg = await edit_or_reply(message, "re")
+    await asyncio.sleep(0.2)
+    await mg.edit("R")
+    await asyncio.sleep(0.2)
+    await mg.edit("Rə")
+    await asyncio.sleep(0.2)
+    await mg.edit("Rəh")
+    await asyncio.sleep(0.2)
+    await mg.edit("Rəhi")
+    await asyncio.sleep(0.2)
+    await mg.edit("Rəhim")
+    await asyncio.sleep(0.2)
+    await mg.edit("Rəhimm")
+    await asyncio.sleep(0.2)
+    await mg.edit("Rəhimmm")
 
 
 #@(events.NewMessage(pattern='/reklam'))
