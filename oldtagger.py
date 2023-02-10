@@ -72,8 +72,6 @@ from cryptography.fernet import Fernet
 from AykhanPro.komekci import random_line
 from sorular import D_LİST, C_LİST
 from pyrogram import Client, idle, filters
-from io import BytesIO
-from aiohttp import ClientSession
 import random
 from random import choice
 from pyrogram.types import Message
@@ -95,6 +93,10 @@ import speedtest
 from PIL import Image
 from pyrogram.types import Message
 from telegraph import upload_file
+from pyrogram import Client, filters
+from pyrogram.types import Message
+from io import BytesIO
+from aiohttp import ClientSession
 from pyrogram.errors import (
     FloodWait,
     InputUserDeactivated,
@@ -1387,37 +1389,43 @@ async def runs(_, message):
 
 
 
+
 aiohttpsession = ClientSession()
 
+
+async def get_http_status_code(url: str) -> int:
+    async with aiohttpsession.head(url) as resp:
+        return resp.status
+    
+
 async def make_carbon(code):
-    url = "https://carbonara.vercel.app/api/cook"
-    async with aiohttpsession.post(url, json={"code": code}) as resp:
-        image = BytesIO(await resp.read())
-    image.name = "carbon.png"
-    return image
+    url = "https://carbonara.vercel.app/api/cook"
+    async with aiohttpsession.post(url, json={"code": code}) as resp:
+        image = BytesIO(await resp.read())
+    image.name = "carbon.png"
+    return image
 
-
-@app.on_message(filters.command("carbon"))
-async def carbon_func(_, message):
-    if not message.reply_to_message:
-        return await message.reply_text(
-            "Mesaja yanıt verərək carbon yazın."
-        )
-    if not message.reply_to_message.text:
-        return await message.reply_text(
-            "Mesaja yanıt verərək carbon yazın."
-        )
-    user_id = message.from_user.id
-    m = await message.reply_text("Emal edilir...")
-    carbon = await make_carbon(message.reply_to_message.text)
-    await m.edit("Yükləndi..")
-    await message.reply_photo(
-        photo=carbon,
-        caption=f"**Carbon uğurla hazırlandı✅️**\n\n**@OldMultiBot ilə {message.from_user.mention} tərəfindən Carbon hazırlandı**",
-        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("𝚂𝚄𝙿𝙿𝙾𝚁𝚃", url="https://t.me/TEAMABASOFcom")]]),                   
-    )
-    await m.delete()
-    carbon.close()
+@Client.on_message(filters.command("carbon")) #auye
+async def carbon_func(client, msg):
+    reply = msg.reply_to_message
+    if reply:
+        m = await msg.reply_text("️🛎 Carbonu hazırlayıram...")
+        carbon = await make_carbon(msg.reply_to_message.text)
+        await m.edit("🎉 Artıq hazırdır! Göndərirəm.")
+        await client.send_document(msg.chat.id, carbon, caption=f"[OldMultiBot](https://t.me/OldMultiBot) tərəfindən {msg.from_user.mention} üçün yaradıldı. 👻")
+        await m.delete()
+        carbon.close()
+    else:
+        try:
+            text = msg.text.split(" ", 1)[1]
+            m = await msg.reply_text("️🛎 Carbonu hazırlayıram...")
+            carbon = await make_carbon(text)
+            await m.edit("🎉 Artıq hazırdır! Göndərirəm.")
+            await client.send_document(msg.chat.id, carbon, caption=f"[OpenAI](https://t.me/openaimgbot) tərəfindən {msg.from_user.mention} üçün yaradıldı. 👻")
+            await m.delete()
+            carbon.close()
+        except IndexError:
+            await msg.reply_text("️🛎 Mətn daxil etmədin...")
 
 
 @app.on_message(filters.command("telegraph"))
