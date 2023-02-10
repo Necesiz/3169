@@ -21,3 +21,5 @@ wget
 lyricsgenius
 speedtest
 Pillow==9.0.0
+gTTS
+googletrans==4.0.0-rc1
