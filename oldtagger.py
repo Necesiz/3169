@@ -1480,7 +1480,7 @@ rehim = (
 
 @client.on(events.NewMessage(pattern='@teamabasov'))
 async def sahib(event):
-    await event.reply(rehim)
+    await event.reply("Sahibim burda olanda size cavab verecek")
 
 #@(events.NewMessage(pattern='/reklam'))
 #async def handler(event):	
