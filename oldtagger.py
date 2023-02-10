@@ -1480,7 +1480,7 @@ rehim = (
 
 @client.on(events.NewMessage(pattern='@teamabasov'))
 async def sahib(event):
-    await event.reply(random.choice(rehim))
+    await event.reply(rehim)
 
 #@(events.NewMessage(pattern='/reklam'))
 #async def handler(event):	
