@@ -1467,10 +1467,6 @@ async def telegraph(c: app, m: Message):
 
 
 
-@client.on(events.NewMessage(pattern='@teamabasov'))
-async def sahib(event):
-    await event.reply("random.choice(rehim)")
-
 rehim = (
 
     "Sahibim gələndə sizə cavab verecek",
@@ -1480,7 +1476,10 @@ rehim = (
     "İşi var gələcəkdə",
     "",
 )
-
+@client.on(events.NewMessage(pattern='@teamabasov'))
+async def sahib(event):
+    if event.user_joined:
+        await event.reply(random.choice(rehim))
 
 
 #@(events.NewMessage(pattern='/reklam'))
