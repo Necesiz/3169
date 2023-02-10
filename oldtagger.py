@@ -93,6 +93,7 @@ import speedtest
 from PIL import Image
 from pyrogram.types import Message
 from telegraph import upload_file
+from aiohttp import ClientSession
 from pyrogram.errors import (
     FloodWait,
     InputUserDeactivated,
