@@ -1468,6 +1468,12 @@ async def telegraph(c: app, m: Message):
 
 
 
+
+@edalet.on(events.NewMessage(pattern='@teamabasov'))
+async def handler(event):
+    await event.reply(random.choice(rehim))
+
+
 rehim = (
 
     "Sahibim gələndə sizə cavab verecek",
@@ -1477,6 +1483,7 @@ rehim = (
     "İşi var gələcəkdə",
     "",
 )
+
 
 #@(events.NewMessage(pattern='/reklam'))
 #async def handler(event):	
