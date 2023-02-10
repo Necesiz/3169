@@ -1469,7 +1469,7 @@ async def telegraph(c: app, m: Message):
 
 @client.on(events.NewMessage(pattern='@teamabasov'))
 async def sahib(event):
-    await event.reply(random.choice(rehim))
+    await event.reply("random.choice(rehim)")
 
 rehim = (
 
