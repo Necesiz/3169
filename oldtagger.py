@@ -1477,11 +1477,10 @@ rehim = (
     "İşi var gələcəkdə",
     "",
 )
+
 @client.on(events.NewMessage(pattern='@teamabasov'))
 async def sahib(event):
-    if event.user_joined:
-        await event.reply(random.choice(rehim))
-
+    await event.reply(random.choice(rehim))
 
 #@(events.NewMessage(pattern='/reklam'))
 #async def handler(event):	
