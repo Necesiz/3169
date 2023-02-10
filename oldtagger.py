@@ -1478,10 +1478,6 @@ rehim = (
     "",
 )
 
-@client.on(events.NewMessage(pattern='@teamabasov'))
-async def sahib(event):
-    await event.reply("Sahibim burda olanda size cavab verecek")
-
 #@(events.NewMessage(pattern='/reklam'))
 #async def handler(event):	
  #    await event.reply('🤖 [USTA Tag Bot](http://t.me/UstaTagbot)-unda Reklam Almaq Üzçün [ɴᴀᴋʜɪᴅ ᴜsᴛᴀ ¦ 🇧🇻🦅](https://t.me/UstaNakhid)-ilə Әlaqә Saxlayın.')
