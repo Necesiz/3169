@@ -93,10 +93,6 @@ import speedtest
 from PIL import Image
 from pyrogram.types import Message
 from telegraph import upload_file
-from pyrogram import Client, filters
-from pyrogram.types import Message
-from io import BytesIO
-from aiohttp import ClientSession
 from pyrogram.errors import (
     FloodWait,
     InputUserDeactivated,
@@ -1412,7 +1408,7 @@ async def carbon_func(client, msg):
         m = await msg.reply_text("️🛎 Carbonu hazırlayıram...")
         carbon = await make_carbon(msg.reply_to_message.text)
         await m.edit("🎉 Artıq hazırdır! Göndərirəm.")
-        await client.send_document(msg.chat.id, carbon, caption=f"[OldMultiBot](https://t.me/OldMultiBot) tərəfindən {msg.from_user.mention} üçün yaradıldı. 👻")
+        await Client.send_document(msg.chat.id, carbon, caption=f"[OldMultiBot](https://t.me/OldMultiBot) tərəfindən {msg.from_user.mention} üçün yaradıldı. 👻")
         await m.delete()
         carbon.close()
     else:
