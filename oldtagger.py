@@ -1003,22 +1003,6 @@ async def telegraph(c: app, m: Message):
 
 
 
-@edalet.on(events.NewMessage(pattern='@teamabasov'))
-async def handler(event):
-    await event.reply(random.choice(rehim))
-
-
-rehim = (
-
-    "Sahibim gələndə sizə cavab verecek",
-    "Az tağ ele",
-    "Bəlkəm o indi yatır",
-    "O buralarda olmasada men burdayam sözüvü de",
-    "İşi var gələcəkdə",
-    "",
-)
-
-
 #@(events.NewMessage(pattern='/reklam'))
 #async def handler(event):	
  #    await event.reply('🤖 [USTA Tag Bot](http://t.me/UstaTagbot)-unda Reklam Almaq Üzçün [ɴᴀᴋʜɪᴅ ᴜsᴛᴀ ¦ 🇧🇻🦅](https://t.me/UstaNakhid)-ilə Әlaqә Saxlayın.')
