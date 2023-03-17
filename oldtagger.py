@@ -23,7 +23,6 @@ from telethon import Button, events
 import speedtest
 # Pyrogram----------------------------------------------------------------------------------------------------
 from pyrogram import Client, filters
-import motor.motor_asyncio
 from motor.motor_asyncio import AsyncIOMotorClient as MongoClient
 import asyncio
 import time
