@@ -2,7 +2,7 @@
 telethon
 cryptg
 requests
-pyrogram==1.4.16
+pyrogram==2.0.97
 tgcrypto
 pymongo[srv]
 aiofiles
@@ -23,3 +23,4 @@ speedtest
 Pillow==9.0.0
 gTTS
 googletrans==4.0.0-rc1
+openai
