@@ -92,6 +92,7 @@ from PIL import Image
 from pyrogram.types import Message
 from telegraph import upload_file
 from aiohttp import ClientSession
+import openai
 from pyrogram.errors import (
     FloodWait,
     InputUserDeactivated,
@@ -200,408 +201,95 @@ tekli_calisan = []
  
 
 #pyrogram
-@app.on_message(filters.command("info"))
-async def _id(_, message: Message):
-    msg = message.reply_to_message or message
-    out_str = "**User İnfo:**\n"
-    out_str += f" 💎 __Yanıtlanan Kullanıcı Adı__ : {msg.from_user.first_name}\n"
-    out_str += f" 💬 __Mesaj ID__ : `{msg.forward_from_message_id or msg.message_id}`\n"
-    if msg.from_user:
-        out_str += f" 🙋🏻‍♂️ __Yanıtlanan Kullanıcı ID__ : `{msg.from_user.id}`\n"
- 
-    await message.reply(out_str)
 
+openai.api_key = "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"
+
+
+
+@app.on_message(filters.command('gpt'))
+async def start(client, msj):
+    chat_id = msj.chat.id
+    reply = msj.reply_to_message
+    
+    
+    
+    if reply:
+        yazi = reply.text
+        yazi = yazi.lower()
+        if "kod" in yazi or "kodu" in yazi:
+                    z = await client.send_message(chat_id, f"👩 **Mən sənin sualına  cavab hazırlayıram...**\n🥰 **Bu sənin nə istədiyindən asılı olaraq vaxt ala bilər**")
+                    response = openai.Completion.create(
+                        model="text-davinci-003",
+                        prompt=yazi,
+                        temperature=0.9,
+                        max_tokens=2048,
+                        top_p=1,
+                        frequency_penalty=0,
+                        presence_penalty=0.6,
+                        stop=["###"]
+                    )
+                    text = response['choices'][0]['text']
+                    await client.delete_messages(chat_id, z.id)
+                    await client.send_message(chat_id, f"`{text}`")
+                    await client.send_message(chat_id, f"🌌 **Sualına cavab yazdım yeni sual üçün /sofia sualını yaz**")
+        else:
+                    z = await client.send_message(chat_id, f"👩 **Mən sənin sualına  cavab hazırlayıram...**\n🥰 **Bu sənin nə istədiyindən asılı olaraq vaxt ala bilər**")
+                    response = openai.Completion.create(
+                        model="text-davinci-003",
+                        prompt=yazi,
+                        temperature=0.9,
+                        max_tokens=3072,
+                        top_p=1,
+                        frequency_penalty=0,
+                        presence_penalty=0.6,
+                        stop=["###"]
+                    )
+                    text = response['choices'][0]['text']
+                    await client.delete_messages(chat_id, z.id)
+                    await client.send_message(chat_id, f"{text}")
+    elif not reply:
+        try:
+            yazi = msj.text.split(" ", 1)[1]
+            yaziVar = True
+            if yaziVar == True:
+                yazi = yazi.lower()
+                if "kod" in yazi or "kodu" in yazi:
+                    z = await client.send_message(chat_id, f"👩 **Mən sənin sualına  cavab hazırlayıram...**\n🥰 **Bu sənin nə istədiyindən asılı olaraq vaxt ala bilər**")
+                    response = openai.Completion.create(
+                        model="text-davinci-003",
+                        prompt=yazi,
+                        temperature=0.9,
+                        max_tokens=2048,
+                        top_p=1,
+                        frequency_penalty=0,
+                        presence_penalty=0.6,
+                        stop=["###"]
+                    )
+                    text = response['choices'][0]['text']
+                    await client.delete_messages(chat_id, z.id)
+                    await client.send_message(chat_id, f"`{text}`")
+                    await client.send_message(chat_id, f"🌌 **Yeni sual vermək isdyirsənsə /sofia sualını qeyd ed**")
+                else:
+                    z = await client.send_message(chat_id, f"👩 **Mən sənin sualına  cavab hazırlayıram...**\n🥰 **Bu sənin nə istədiyindən asılı olaraq vaxt ala bilər**")
+                    response = openai.Completion.create(
+                        model="text-davinci-003",
+                        prompt=yazi,
+                        temperature=0.9,
+                        max_tokens=3072,
+                        top_p=1,
+                        frequency_penalty=0,
+                        presence_penalty=0.6,
+                        stop=["###"]
+                    )
+                    text = response['choices'][0]['text']
+                    await client.delete_messages(chat_id, z.id)
+                    await client.send_message(chat_id, f"{text}")
+        except Exception as e:
+            print(e)
+            await client.send_message(chat_id, f"🤔 **Sualını aydın yaz.**")
 
 
-#mahnı yükləmə#
-@app.on_message(filters.command("song"))
-def song(_, message):
-    query = " ".join(message.command[1:])
-    m = message.reply("<b>Mahnınız Axtarılır ... 🔍</b>")
-    ydl_ops = {"format": "bestaudio[ext=m4a]"}
-    try:
-        results = YoutubeSearch(query, max_results=1).to_dict()
-        link = f"https://youtube.com{results[0]['url_suffix']}"
-        title = results[0]["title"][:40]
-        thumbnail = results[0]["thumbnails"][0]
-        thumb_name = f"{title}.jpg"
-        thumb = requests.get(thumbnail, allow_redirects=True)
-        open(thumb_name, "wb").write(thumb.content)
-        duration = results[0]["duration"]
 
-    except Exception as e:
-        m.edit("<b>❌ Bunu deməliyəm üzürlü say 😔 mahnı tapılmadı.\n\n Zəhmət Olmasa başqa mahnı adı deyin @oldsupport 🍷.</b>")
-        print(str(e))
-        return
-    m.edit("<b>📥 Yükləmə Prosesi Başladı...</b>")
-    try:
-        with yt_dlp.YoutubeDL(ydl_ops) as ydl:
-            info_dict = ydl.extract_info(link, download=False)
-            audio_file = ydl.prepare_filename(info_dict)
-            ydl.process_info(info_dict)
-        rep = f"**╭───────────────**\n**├▷ ♬ Adı: [{title[:35]}]({link})**\n**├───────────────**\n**├▷♬ Playlist @{Config.PLAYLIST_NAME}**\n**╰───────────────**"
-        res = f"**╭───────────────**\n**├▷ ♬ Adı: [{title[:35]}]({link})**\n**├───────────────**\n**├▷👤 İstəyən** [{message.from_user.first_name}](tg://user?id={message.from_user.id})\n**├───────────────**\n**├▷🌀 Bot: @{Config.BOT_USERNAME}**\n**╰───────────────**"
-        secmul, dur, dur_arr = 1, 0, duration.split(":")
-        for i in range(len(dur_arr) - 1, -1, -1):
-            dur += int(float(dur_arr[i])) * secmul
-            secmul *= 60
-        m.edit("📤 Yüklenir..")
-        message.reply_audio(audio_file, caption=rep, parse_mode='md',quote=False, title=title, duration=dur, thumb=thumb_name, performer="@OldMultiBot")
-        m.delete()
-        app.send_audio(chat_id=Config.PLAYLIST_ID, audio=audio_file, caption=res, performer="@OldMultiBot", parse_mode='md', title=title, duration=dur, thumb=thumb_name)
-    except Exception as e:
-        m.edit("<link Xətanın, düzelmesini gözləyin.</b>")
-        print(e)
-
-    try:
-        os.remove(audio_file)
-        os.remove(thumb_name)
-    except Exception as e:
-        print(e)
-
-
-# video indirme 
-
-@app.on_message(
-    filters.command(["video", "vsong"])
-)
-async def vsong(client, message):
-    ydl_opts = {
-        "format": "best",
-        "keepvideo": True,
-        "prefer_ffmpeg": False,
-        "geo_bypass": True,
-        "outtmpl": "%(title)s.%(ext)s",
-        "quite": True,
-    }
-    query = " ".join(message.command[1:])
-    try:
-        results = YoutubeSearch(query, max_results=1).to_dict()
-        link = f"https://youtube.com{results[0]['url_suffix']}"
-        title = results[0]["title"][:40]
-        thumbnail = results[0]["thumbnails"][0]
-        thumb_name = f"{title}.jpg"
-        thumb = requests.get(thumbnail, allow_redirects=True)
-        open(thumb_name, "wb").write(thumb.content)
-        results[0]["duration"]
-        results[0]["url_suffix"]
-        results[0]["views"]
-        message.from_user.mention
-    except Exception as e:
-        print(e)
-    try:
-        msg = await message.reply("📥 **video yüklənəcəy...**")
-        with YoutubeDL(ydl_opts) as ytdl:
-            ytdl_data = ytdl.extract_info(link, download=True)
-            file_name = ytdl.prepare_filename(ytdl_data)
-    except Exception as e:
-        return await msg.edit(f"🚫 **Xəta:** {e}")
-    preview = wget.download(thumbnail)
-    await msg.edit("📤 **video yüklənir...**")
-    await message.reply_video(
-        file_name,
-        duration=int(ytdl_data["duration"]),
-        thumb=preview,
-        caption=ytdl_data["title"],
-    )
-    try:
-        os.remove(file_name)
-        await msg.delete()
-    except Exception as e:
-        print(e)
-
-
-
-
-#Pyrogram comand
-@app.on_message(filters.command("zer"))
-async def roll_dice(bot, message):
-    await bot.send_dice(message.chat.id, "🎲")
-
-@app.on_message(filters.command("ox"))                                      
-async def roll_arrow(bot, message):
-    await bot.send_dice(message.chat.id, "🎯")
-
-@app.on_message(filters.command("gol"))
-async def roll_goal(bot, message):
-    await bot.send_dice(message.chat.id, "⚽️")
-
-@app.on_message(filters.command("spin"))
-async def roll_luck(bot, message):
-    await bot.send_dice(message.chat.id, "🎰")
-
-@app.on_message(filters.command("basket"))
-async def roll_throw(bot, message):
-    await bot.send_dice(message.chat.id, "🏀")
-
-@app.on_message(filters.command(["bowling", "tenpins"]))
-async def roll_bowling(bot, message):
-    await bot.send_dice(message.chat.id, "🎳") 
-
- 
-
-#telethon xos geldin mesaj @edalet_22 terifindən hazırlandı
-@client.on(events.ChatAction)
-async def handler(event):
-    if event.user_joined:
-        await event.reply(random.choice(userjoin))
-
-
-@client.on(events.ChatAction)
-async def handler(event):
-    if event.user_left:
-        await event.reply("Əla Birdə gəlmə")
-
-userjoin = (
-
-    "XOŞ GƏLDİN ARAMIZA",
-    "Xoş gəldin xoş söhbətlər arzu edirəm",
-    "Xoş gəldin necəsən",
-    "Xoş gəldin groupa",
-    "Xoş gəldin əzizim",
-    "",
-)
-
-
-@app.on_message(filters.command("ping"))
-async def ping(_, message):
-    start_t = time.time()
-    rm = await message.reply_text("...")
-    end_t = time.time()
-    time_taken_s = (end_t - start_t) * 1000
-    await rm.edit(f"Pong!\n{time_taken_s:.3f} ms")
-
-
-
-
-@app.on_message(filters.command("pin"))
-async def pin(_, message: Message):
-    if not message.reply_to_message:
-        return
-    args = message.text.lower().split()
-    notify = not any(arg in args for arg in ('loud', 'notify'))
-    await message.reply_to_message.pin(disable_notification=notify)
-
-@app.on_message(filters.command("unpin"))
-async def unpin(_, message: Message):
-    if not message.reply_to_message:
-        return
-    await message.reply_to_message.unpin()
-
-
-
-ABISHNOIX = "https://telegra.ph/file/44d9457217353f7f955b8.jpg"
-
-
-@app.on_message(filters.command(["alive"]) & filters.user(OWNER_ID))
-async def alive(_, message):
-    await message.reply_photo(
-        photo=ABISHNOIX,
-        caption=f"""✨ **@OldMultiBot AKTİVDİR {message.from_user.mention},**
-
-**BOT SAHİBİ  : [TEAMABASOF](https://t.me/AnonyumAz)**
-**ᴘʏᴛʜᴏɴ ᴠᴇʀꜱɪᴏɴ :** `{y()}`
-**ᴛᴇʟᴇᴛʜᴏɴ ᴠᴇʀꜱɪᴏɴ :** `{s}`
-**ᴘʏʀᴏɢʀᴀᴍ ᴠᴇʀꜱɪᴏɴ :** `{z}`
-**ʙᴏᴛ ᴠᴇʀꜱɪᴏɴ :** `1.0`
-""",
-        reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(
-                        "•🎴 KANALIM•", url="https://t.me/TEAMABASOFcoç"
-                    ),
-                    InlineKeyboardButton(
-                        "•📂 APK•", url="https://t.me/texnoapk1"
-                    ),
-                ]
-            ]
-        ),
-    )
-
-
-@app.on_message(filters.command("sehid"))
-async def commit(_, message):
-    await message.reply_text((await random_line('AykhanPro/txt/sehid.txt')))
-				
-@app.on_message(filters.command("meslehet") & ~filters.edited)
-async def meslehet(_, message):
-    await message.reply_text((await random_line('AykhanPro/txt/meslehet.txt')))
-
-
-@app.on_message(filters.command("anekdod"))
-async def anekdod(_, message):
-    await message.reply_text((await random_line('AykhanPro/txt/anekdod.txt')))
-
-
-
-
-@app.on_message(filters.command("tema"))
-async def tema(app: Client, msg: Message):
-    await msg.reply(random.choice(temalar))
-
-
-
-
-
-
-#Pastebins
-async def p_paste(message, extension=None):
-    siteurl = "https://pasty.lus.pm/api/v1/pastes"
-    data = {"content": message}
-    try:
-        response = requests.post(url=siteurl, data=json.dumps(data), headers=headers)
-    except Exception as e:
-        return {"error": str(e)}
-    if response.ok:
-        response = response.json()
-        purl = (
-            f"https://pasty.lus.pm/{response['id']}.{extension}"
-            if extension
-            else f"https://pasty.lus.pm/{response['id']}.txt"
-        )
-        return {
-            "url": purl,
-            "raw": f"https://pasty.lus.pm/{response['id']}/raw",
-            "bin": "Pasty",
-        }
-    return {"error": "Unable to reach pasty.lus.pm"}
-
-
-
-@app.on_message(filters.command(["tgpaste", "pasty", "paste"]))
-async def pasty(client, message):
-    pablo = await message.reply_text("`Gözləyin...`")
-    tex_t = message.text
-    if ' ' in message.text:
-        message_s = message.text.split(" ", 1)[1]
-    elif message.reply_to_message:
-        message_s = message.reply_to_message.text
-    else:
-        await message.reply("daxil olunmur mətinə yanitlayaraq yazin/paste yanitla")
-    if not tex_t:
-        if not message.reply_to_message:
-            await pablo.edit("`Yalnız mətin və sənədlər dəsdəklənir.`")
-            return
-        if not message.reply_to_message.text:
-            file = await message.reply_to_message.download()
-            m_list = open(file, "r").read()
-            message_s = m_list
-            os.remove(file)
-        elif message.reply_to_message.text:
-            message_s = message.reply_to_message.text
-
-    ext = "py"
-    x = await p_paste(message_s, ext)
-    p_link = x["url"]
-    p_raw = x["raw"]
-
-    pasted = f"**Uğurla Pasty yapışdırlıdı**\n\n**Link:** • [Click here]({p_link})\n\n**Raw Link:** • [Click here]({p_raw})"
-    await pablo.edit(pasted, disable_web_page_preview=True)
-
-
-
-@app.on_message(filters.command("mal"))
-async def runs(_, message):
-    """ /runs strings """
-    effective_string = f"**🐄 Mal testi edildi**\n\n**{message.reply_to_message.from_user.mention} sən {random.randint(0,101)}% Malsan**"
-    if message.reply_to_message:
-        await message.reply_to_message.reply_text(effective_string)
-    else:
-        await message.reply_text(effective_string)
-
-
-@app.on_message(filters.command("sevgi"))
-async def runs(_, message):
-    """ /runs strings """
-    effective_string = f"**Sevgi Testi 💘**\n\n**❤️ {message.from_user.mention}**\n\n**💟 {message.reply_to_message.from_user.mention}**\n\n**Sevgi faizi  {random.randint(0,101)}%**"
-    if message.reply_to_message:
-        await message.reply_to_message.reply_text(effective_string)
-    else:
-        await message.reply_text(effective_string)
-
-
-
-
-
-aiohttpsession = ClientSession()
-
-async def make_carbon(code):
-    url = "https://carbonara.vercel.app/api/cook"
-    async with aiohttpsession.post(url, json={"code": code}) as resp:
-        image = BytesIO(await resp.read())
-    image.name = "carbon.png"
-    return image
-
-
-@app.on_message(filters.command("carbon"))
-async def carbon_func(_, message):
-    if not message.reply_to_message:
-        return await message.reply_text(
-            "Mesaja yanıt verərək carbon yazın."
-        )
-    if not message.reply_to_message.text:
-        return await message.reply_text(
-            "Mesaja yanıt verərək carbon yazın."
-        )
-    user_id = message.from_user.id
-    m = await message.reply_text("Emal edilir...")
-    carbon = await make_carbon(message.reply_to_message.text)
-    await m.edit("Yükləndi..")
-    await message.reply_photo(
-        photo=carbon,
-        caption=f"**Carbon uğurla hazırlandı✅️**\n\n**@OldMultiBot ilə {message.from_user.mention} tərəfindən Carbon hazırlandı**",
-        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("𝚂𝚄𝙿𝙿𝙾𝚁𝚃", url="https://t.me/TEAMABASOFcom")]]),                   
-    )
-    await m.delete()
-    carbon.close()
-
-
-@app.on_message(filters.command("telegraph"))
-async def telegraph(c: app, m: Message):
-    replied = m.reply_to_message
-    start_t = datetime.now()
-    await m.edit_text("`Trying to paste to telegraph...`", parse_mode="md")
-    if not replied:
-        await m.edit_text("reply to a supported media file")
-        return
-    if not (
-        (replied.photo and replied.photo.file_size <= 5242880)
-        or (replied.animation and replied.animation.file_size <= 5242880)
-        or (
-            replied.video
-            and replied.video.file_name.endswith(".mp4")
-            and replied.video.file_size <= 5242880
-        )
-        or (
-            replied.document
-            and replied.document.file_name.endswith(
-                (".jpg", ".jpeg", ".png", ".gif", ".mp4")
-            )
-            and replied.document.file_size <= 5242880
-        )
-    ):
-        await m.edit_text("**Not supported!**", parse_mode="md")
-        return
-    download_location = await c.download_media(
-        message=m.reply_to_message, file_name="telepyrobot/downloads/"
-    )
-    await m.edit_text("`Pasting to telegraph...`", parse_mode="md")
-    try:
-        response = upload_file(download_location)
-    except Exception as document:
-        await m.edit_text(document)
-    else:
-        end_t = datetime.now()
-        ms = (end_t - start_t).seconds
-        await m.edit_text(
-            f"**Document Passed to** [Telegra.ph](https://telegra.ph{response[0]}) **in __{ms}__ seconds**",
-            parse_mode="md",
-            disable_web_page_preview=True,
-        )
-    finally:
-        os.remove(download_location)
-    return
 
 
 
