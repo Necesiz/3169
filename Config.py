@@ -7,8 +7,8 @@ class Config():
     admins = {}
     API_ID = int(os.environ.get("API_ID","15954332"))
     API_HASH = os.environ.get("API_HASH","85adea6f1eaf068b707703b4846a9ced")
-    BOT_TOKEN = os.environ.get("BOT_TOKEN", "5854631326:AAFHesNNE5a6gk_98Yhh66lUJHVlsp_WjkA")
-    BOT_USERNAME = os.environ.get("BOT_USERNAME", "TGAsisstanbot")
+    BOT_TOKEN = os.environ.get("BOT_TOKEN", "5895417481:AAGJXSgoOsPNa_vNNVEwx_sJ1EjI5dNfjnw")
+    BOT_USERNAME = os.environ.get("BOT_USERNAME", "Telehelp1Bot")
     BOT_NAME = os.environ.get("BOT_NAME", "OLD MULTİ")
     BOT_ID = int(os.environ.get("BOT_ID", "5964973513"))
     SUDO_USERS = os.environ.get("SUDO_USERS", "5134595693").split()
