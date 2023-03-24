@@ -89,26 +89,6 @@ temalar = [" [OldMultiBot](https://t.me/addtheme/sf158WSw7LWOtpvV) ",
 " [OldMultiBot](https://t.me/addtheme/ManchesterUnitedByVK) "]
 
 
-ALIVE = (
-    "Sahibim OLD MULTI BOT : ONLINE\n\nVERSIYA ⚡️"
-    f"\nv{__version__}"
-)
-
-ydl_opts = {
-    'format': 'best',
-    'keepvideo': True,
-    'prefer_ffmpeg': False,
-    'geo_bypass': True,
-    'outtmpl': '%(title)s.%(ext)s',
-    'quite': True
-}
-
-BUTTONS = InlineKeyboardMarkup([[InlineKeyboardButton(text="➕️ GROUPA ELAVE ET", url=f"http://t.me/oldtaggerbot?startgroup=a")]])
-
-FORCE_SUB = "TEAMABASOFcom"
-
-#-#-#-# Pyrogram Başlanğıc #-#-#-#
-app = Client(":memory:", api_id, api_hash, bot_token=bot_token)
 
 
 
@@ -173,5 +153,4 @@ async def speedtest_function(message):
  
 
 print(">> Bot işləyir narahat olmayın. @edalet_22 Məlumat almaq üçün <<")
-app.start()
 client.run_until_disconnected()
