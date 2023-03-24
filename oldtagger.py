@@ -206,88 +206,37 @@ openai.api_key = "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"
 
 
 
-@app.on_message(filters.command('gpt'))
-async def start(client, msj):
-    chat_id = msj.chat.id
-    reply = msj.reply_to_message
-    
-    
-    
-    if reply:
-        yazi = reply.text
-        yazi = yazi.lower()
-        if "kod" in yazi or "kodu" in yazi:
-                    z = await client.send_message(chat_id, f"👩 **Mən sənin sualına  cavab hazırlayıram...**\n🥰 **Bu sənin nə istədiyindən asılı olaraq vaxt ala bilər**")
-                    response = openai.Completion.create(
-                        model="text-davinci-003",
-                        prompt=yazi,
-                        temperature=0.9,
-                        max_tokens=2048,
-                        top_p=1,
-                        frequency_penalty=0,
-                        presence_penalty=0.6,
-                        stop=["###"]
-                    )
-                    text = response['choices'][0]['text']
-                    await client.delete_messages(chat_id, z.id)
-                    await client.send_message(chat_id, f"`{text}`")
-                    await client.send_message(chat_id, f"🌌 **Sualına cavab yazdım yeni sual üçün /sofia sualını yaz**")
-        else:
-                    z = await client.send_message(chat_id, f"👩 **Mən sənin sualına  cavab hazırlayıram...**\n🥰 **Bu sənin nə istədiyindən asılı olaraq vaxt ala bilər**")
-                    response = openai.Completion.create(
-                        model="text-davinci-003",
-                        prompt=yazi,
-                        temperature=0.9,
-                        max_tokens=3072,
-                        top_p=1,
-                        frequency_penalty=0,
-                        presence_penalty=0.6,
-                        stop=["###"]
-                    )
-                    text = response['choices'][0]['text']
-                    await client.delete_messages(chat_id, z.id)
-                    await client.send_message(chat_id, f"{text}")
-    elif not reply:
-        try:
-            yazi = msj.text.split(" ", 1)[1]
-            yaziVar = True
-            if yaziVar == True:
-                yazi = yazi.lower()
-                if "kod" in yazi or "kodu" in yazi:
-                    z = await client.send_message(chat_id, f"👩 **Mən sənin sualına  cavab hazırlayıram...**\n🥰 **Bu sənin nə istədiyindən asılı olaraq vaxt ala bilər**")
-                    response = openai.Completion.create(
-                        model="text-davinci-003",
-                        prompt=yazi,
-                        temperature=0.9,
-                        max_tokens=2048,
-                        top_p=1,
-                        frequency_penalty=0,
-                        presence_penalty=0.6,
-                        stop=["###"]
-                    )
-                    text = response['choices'][0]['text']
-                    await client.delete_messages(chat_id, z.id)
-                    await client.send_message(chat_id, f"`{text}`")
-                    await client.send_message(chat_id, f"🌌 **Yeni sual vermək isdyirsənsə /sofia sualını qeyd ed**")
-                else:
-                    z = await client.send_message(chat_id, f"👩 **Mən sənin sualına  cavab hazırlayıram...**\n🥰 **Bu sənin nə istədiyindən asılı olaraq vaxt ala bilər**")
-                    response = openai.Completion.create(
-                        model="text-davinci-003",
-                        prompt=yazi,
-                        temperature=0.9,
-                        max_tokens=3072,
-                        top_p=1,
-                        frequency_penalty=0,
-                        presence_penalty=0.6,
-                        stop=["###"]
-                    )
-                    text = response['choices'][0]['text']
-                    await client.delete_messages(chat_id, z.id)
-                    await client.send_message(chat_id, f"{text}")
-        except Exception as e:
-            print(e)
-            await client.send_message(chat_id, f"🤔 **Sualını aydın yaz.**")
+def testspeed(m):
+    try:
+        test = speedtest.Speedtest()
+        test.get_best_server()
+        test.download()
+        test.upload()
+        test.results.share()
+        result = test.results.dict()
+    except Exception as e:
+        return
+    return result
 
+@client.on(events.NewMessage(pattern="^/speedtest"))
+async def speedtest_function(message):
+    m = await message.reply("Running Speed test")
+    loop = asyncio.get_event_loop()
+    result = await loop.run_in_executor(None, testspeed, m)
+    output = f"""**Speedtest Results**
+    
+**Client:**
+**__ISP:__** {result['client']['isp']}
+**__Country:__** {result['client']['country']}
+  
+**Server:**
+**__Name:__** {result['server']['name']}
+**__Country:__** {result['server']['country']}, {result['server']['cc']}
+**__Sponsor:__** {result['server']['sponsor']}
+**__Latency:__** {result['server']['latency']}  
+**__Ping:__** {result['ping']}"""
+    await client.send_file(message.chat.id, result["share"], caption=output)
+    await m.delete()
 
 
 
