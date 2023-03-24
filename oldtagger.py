@@ -20,85 +20,9 @@ from telethon.sessions import StringSession
 from telethon.tl.types import ChannelParticipantsAdmins
 from asyncio import sleep 
 from telethon import Button, events
+import asyncio
 import speedtest
 # Pyrogram----------------------------------------------------------------------------------------------------
-from pyrogram import Client, filters
-import asyncio
-import time
-import datetime
-import shutil, psutil, traceback, os
-import random
-import string
-import traceback
-import json
-import aiofiles
-from pyrogram import Client, filters, __version__
-from pyrogram.types import Message
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
-import os, youtube_dl, requests, time
-from Config import Config
-from youtube_search import YoutubeSearch
-from pyrogram.handlers import MessageHandler
-from pyrogram import Client, filters
-import yt_dlp
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, CallbackQuery 
-from yt_dlp import YoutubeDL
-from pyrogram import Client, filters
-from pyrogram.types import Message
-import wget
-import asyncio
-import random, re
-import pyrogram
-import os
-import asyncio
-from telegraph import upload_file
-import pyrogram
-import asyncio 
-from collections import deque
-from random import randint
-from pyrogram import filters, Client
-from pyrogram.types import Message
-from platform import python_version as y
-from pyrogram import __version__ as z
-from pyrogram import filters
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-import secrets
-import string 
-import aiohttp
-from pyrogram import filters
-from cryptography.fernet import Fernet
-from AykhanPro.komekci import random_line
-from sorular import D_LİST, C_LİST
-from pyrogram import Client, idle, filters
-import random
-from random import choice
-from pyrogram.types import Message
-from pyrogram import idle, filters
-from pyrogram import Client, filters
-from pyrogram.types import ChatPermissions
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-from helper.fotnt_string import Fonts
-import asyncio
-from asyncio import gather
-from io import BytesIO
-from math import atan2, cos, radians, sin, sqrt
-from os import execvp
-from random import randint
-from re import findall
-from re import sub as re_sub
-from sys import executable
-import speedtest
-from PIL import Image
-from pyrogram.types import Message
-from telegraph import upload_file
-from aiohttp import ClientSession
-import openai
-from pyrogram.errors import (
-    FloodWait,
-    InputUserDeactivated,
-    PeerIdInvalid,
-    UserIsBlocked,
-)
 
 
 
