@@ -106,7 +106,6 @@ tekli_calisan = []
 
 #pyrogram
 
-openai.api_key = "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"
 
 
 
