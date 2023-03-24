@@ -14,12 +14,11 @@ yt_dlp
 ffmpeg
 telegraph
 lyricsgenius==3.0.1
-speedtest
 aiohttp
 cryptography
 wget
 lyricsgenius
-speedtest
+speedtest-cli
 Pillow==9.0.0
 gTTS
 googletrans==4.0.0-rc1
